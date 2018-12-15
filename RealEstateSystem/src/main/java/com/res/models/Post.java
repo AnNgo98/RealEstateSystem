@@ -1,9 +1,13 @@
 package com.res.models;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -11,77 +15,48 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int post_ID;
 
-    @Column(nullable = false, length = 300)
-    @NotNull
-    @Size(min = 10, max = 100, message = "Title size should be in the range [10...100]")
-    private String title;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)    //
+    private PostType postType;
 
-    @Lob @Column(nullable = false)
-    @NotNull
-    @Size(min = 10, max = 3000, message = "Username size should be in the range [10...3000]")
-    private String body;
-
-//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-//    @NotNull
-//    private User author;
+    @Column(nullable = true)
+    private Date postTime = new Date();
 
     @Column(nullable = false)
-    private Date date = new Date();
+    private String title;
 
-    public int getId() {
-        return id;
-    }
+    @Column(nullable = false)
+    private double price;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(nullable = false)
+    private String location;
 
-    public String getTitle() {
-        return title;
-    }
+    @Column(nullable = false)
+    @NumberFormat(pattern = "#,###,###,###.##")
+    private double area;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @Column(nullable = true)
+    private String project;
 
-    public String getBody() {
-        return body;
-    }
+    @Lob @Column(nullable = false)
+    private String description;
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)    //
+    private RealEstaleType realEstaleType;
 
-//    public User getAuthor() {
-//        return author;
-//    }
-//
-//    public void setAuthor(User author) {
-//        this.author = author;
-//    }
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private PostDetails  details;
 
-    public Date getDate() {
-        return date;
-    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY) //
+    private Customer author;
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    @OneToMany(mappedBy = "post")   //
+    private Set<PostImages> postImages = new HashSet<>();
 
-    public Post() {
-    }
+    @OneToMany(mappedBy = "post")   //
+    private Set<ReportedPost> reportedPosts = new HashSet<>();
 
-//    public Post(int id, String title, String body, User author) {
-//        this.id = id;
-//        this.title = title;
-//        this.body = body;
-//        this.author = author;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "id = " + id + ", tittle: " + title + ", body: " + body + ", author: " + author.getFullName();
-//    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY) //
+    private BlockStatusPost status;
 }
