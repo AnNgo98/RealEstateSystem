@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "block_status_post")
-public class BlockStatusPost {
+public class PostStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int status_ID;

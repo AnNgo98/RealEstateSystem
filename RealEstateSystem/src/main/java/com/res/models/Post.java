@@ -3,8 +3,6 @@ package com.res.models;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -58,5 +56,5 @@ public class Post {
     private Set<ReportedPost> reportedPosts = new HashSet<>();
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY) //
-    private BlockStatusPost status;
+    private PostStatus status;
 }
