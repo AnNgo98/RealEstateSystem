@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "block_status_post")
+@Table(name = "post_status")
 public class PostStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
