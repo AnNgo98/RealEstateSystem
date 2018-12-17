@@ -1,5 +1,6 @@
 package com.res.controllers;
 
+import com.res.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,13 +12,13 @@ import java.util.stream.Collectors;
 @Controller
 public class HomeController {
 
-//    @Autowired
-//    private PostService postService;
-//
+    @Autowired
+    private PostService postService;
+
     @RequestMapping("/")
     public String index(Model model) {
-//        List<Post> latest5Posts = postService.findLatest5();
-//        model.addAttribute("latest5posts", latest5Posts);
+        int postsToday = postService.postsToday();
+        model.addAttribute("postsToday", postsToday);
 //
 //        List<Post> latest3Posts = latest5Posts.stream()
 //                .limit(3).collect(Collectors.toList());

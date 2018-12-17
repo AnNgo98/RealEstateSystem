@@ -1,18 +1,25 @@
-//package com.res.services;
-//
-//import com.thuydx.models.Post;
-//import com.thuydx.repositories.PostRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.domain.PageRequest;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//
-//@Service
-//public class PostServiceImpl implements PostService {
-//
-//    @Autowired
-//    private PostRepository postRepo;
+package com.res.services;
+
+import com.res.repositories.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
+@Service
+public class PostServiceImpl implements PostService {
+
+    @Autowired
+    private PostRepository postRepo;
+
+    @Override
+    public int postsToday() {
+        int total = Math.toIntExact(this.postRepo.findAll().stream().filter(p -> Objects.equals(p.getPostTime(), new Date())).count());
+        return 0;
+    }
 //
 //
 //    @Override
@@ -51,4 +58,4 @@
 //    public void deleteById(int id) {
 //        this.postRepo.delete(id);
 //    }
-//}
+}
