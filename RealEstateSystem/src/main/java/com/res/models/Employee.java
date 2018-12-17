@@ -24,11 +24,10 @@ public class Employee {
     @Column(nullable = false, length = 100)
     private String email;
 
-    @Lob
     @Column(nullable = false, length = 200)
     private String address;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Employee manager;
 
     @Column(nullable = false, length = 50)
