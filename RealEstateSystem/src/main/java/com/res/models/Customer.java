@@ -22,7 +22,7 @@ public class Customer {
     @Column(nullable = false, length = 200)
     private String address;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String username;
 
     @Column(nullable = false, length = 100)

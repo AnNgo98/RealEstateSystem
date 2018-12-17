@@ -12,7 +12,7 @@ public class PostType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int type_ID;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 30)
     private String type_Tittle;
 
     @OneToMany(mappedBy = "postType")

@@ -21,7 +21,7 @@ public class Employee {
     @Column(nullable = true)
     private int phoneNumber;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String email;
 
     @Lob

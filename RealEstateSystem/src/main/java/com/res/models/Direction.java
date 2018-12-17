@@ -14,7 +14,7 @@ public class Direction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int direction_ID;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 50)
     private String direction_Title;
 
     @OneToMany(mappedBy = "direction")

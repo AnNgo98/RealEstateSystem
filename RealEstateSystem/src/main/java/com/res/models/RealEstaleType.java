@@ -12,7 +12,7 @@ public class RealEstaleType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int realestate_ID;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 30)
     private String realestate_Title;
 
     @OneToMany(mappedBy = "realEstaleType")
