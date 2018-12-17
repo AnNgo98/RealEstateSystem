@@ -77,14 +77,13 @@ public class PostDetails {
         this.direction = direction;
     }
 
-    public PostDetails() {
+    public Post getPost() {
+        return post;
     }
 
-    public PostDetails(int bedroom, int bathroom, int floor, boolean alley, Direction direction) {
-        this.bedroom = bedroom;
-        this.bathroom = bathroom;
-        this.floor = floor;
-        this.alley = alley;
-        this.direction = direction;
+    public void setPost(Post post) {
+        this.post = post;
     }
+
+    public PostDetails() { }
 }

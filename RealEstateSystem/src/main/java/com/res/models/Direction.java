@@ -17,6 +17,32 @@ public class Direction {
     @Column(nullable = false, length = 30)
     private String direction_Title;
 
-    @OneToMany(mappedBy = "direction")  //
+    @OneToMany(mappedBy = "direction")
     private Set<PostDetails> postsDetail = new HashSet<>();
+
+    public int getDirection_ID() {
+        return direction_ID;
+    }
+
+    public void setDirection_ID(int direction_ID) {
+        this.direction_ID = direction_ID;
+    }
+
+    public String getDirection_Title() {
+        return direction_Title;
+    }
+
+    public void setDirection_Title(String direction_Title) {
+        this.direction_Title = direction_Title;
+    }
+
+    public Set<PostDetails> getPostsDetail() {
+        return postsDetail;
+    }
+
+    public void setPostsDetail(Set<PostDetails> postsDetail) {
+        this.postsDetail = postsDetail;
+    }
+
+    public Direction() { }
 }

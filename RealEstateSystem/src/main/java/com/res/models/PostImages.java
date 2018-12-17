@@ -14,4 +14,30 @@ public class PostImages {
 
     @Column(nullable = false, length = 100)
     private String url;
+
+    public int getImage_ID() {
+        return image_ID;
+    }
+
+    public void setImage_ID(int image_ID) {
+        this.image_ID = image_ID;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public PostImages() { }
 }
