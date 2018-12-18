@@ -7,10 +7,14 @@ import java.util.List;
 
 public interface PostService {
     int postsToday();
-//    List<Post> findAll();
-//    List<Post> findLatest5();
-//    Post findById(int id);
-//    boolean create(Post post);
-//    Post edit(Post post);
-//    void deleteById(int id);
+
+    List<Post> findAll();
+
+    Post findById(int id);
+
+    boolean createOrEdit(Post post);
+
+    public boolean approve(int post_id);
+
+    public boolean block(int post_id);
 }

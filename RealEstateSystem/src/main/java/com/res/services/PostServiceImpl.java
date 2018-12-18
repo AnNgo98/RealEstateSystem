@@ -1,6 +1,8 @@
 package com.res.services;
 
+import com.res.models.Post;
 import com.res.repositories.PostRepository;
+import com.res.repositories.PostStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepo;
+    @Autowired
+    private PostStatusRepository postStatusRepo;
 
     @Override
     public int postsToday() {
@@ -22,42 +26,49 @@ public class PostServiceImpl implements PostService {
         int total = Math.toIntExact(this.postRepo.findAll().stream().filter(p -> Objects.equals(formatDate.format(p.getPostTime()), formatDate.format(new Date()))).count());
         return 0;
     }
-//
-//
-//    @Override
-//    public List<Post> findAll() {
-//        return this.postRepo.findAll();
-//    }
-//
-//    @Override
-//    public List<Post> findLatest5() {
-//        List<Post> lstPost = this.postRepo.findLatest5Posts(new PageRequest(0, 5));
-//        return lstPost;
-//    }
-//
-//    @Override
-//    public Post findById(int id) {
-//        return this.postRepo.findOne(id);
-//    }
-//
-//    @Override
-//    public boolean create(Post post) {
-//        try {
-//            this.postRepo.save(post);
-//            return true;
-//        } catch (Exception e){
-//            return false;
-//        }
-//
-//    }
-//
-//    @Override
-//    public Post edit(Post post) {
-//        return this.postRepo.save(post);
-//    }
-//
-//    @Override
-//    public void deleteById(int id) {
-//        this.postRepo.delete(id);
-//    }
+
+    @Override
+    public List<Post> findAll() {
+        return this.postRepo.findAll();
+    }
+
+    @Override
+    public Post findById(int id) {
+        return this.postRepo.findOne(id);
+    }
+
+    @Override
+    public boolean createOrEdit(Post post) {
+        try {
+            this.postRepo.save(post);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean approve(int post_id) {
+        try {
+            Post post = this.postRepo.findOne(post_id);
+            post.setStatus(this.postStatusRepo.findOne(2));
+            this.postRepo.save(post);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean block(int post_id) {
+        try {
+            Post post = this.postRepo.findOne(post_id);
+            post.setStatus(this.postStatusRepo.findOne(3));
+            this.postRepo.save(post);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

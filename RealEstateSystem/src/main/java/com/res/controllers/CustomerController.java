@@ -19,24 +19,24 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping("/customer/create")
+    @RequestMapping("/customers/create")
     public String createCustomer(Customer customer) {
-        return "customer/create";
+        return "customers/create";
     }
 
-    @RequestMapping(value = "/customer/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/customers/create", method = RequestMethod.POST)
     public String createCustomer(@Valid Customer customer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "customer/create";
+            return "customers/create";
         }
 
-        if (!customerService.create(customer)) {
+        if (!customerService.createOrUpdate(customer)) {
             notifyService.addErrorMessage("Invalid create!");
-            return "customer/create";
+            return "customers/create";
         }
 
         notifyService.addInfoMessage("Create successful");
-        return "redirect:/customer/create";
+        return "redirect:/customers/create";
     }
 }

@@ -25,26 +25,26 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "admin/login", method = RequestMethod.GET)
+    @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginAdmin() {
-        return "loginAdmin";
+        return "login";
     }
 
-    @RequestMapping(value = "admin/login", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public String loginAdmin(@Valid LoginForm loginForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "admin/login";
+            return "login";
         }
 
         Employee admin =this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
 
         if (admin.getEmployee_ID() == 0) {
             notifyService.addErrorMessage("Invalid login!");
-            return "admin/login";
+            return "login";
         }
 
-        httpSession.setAttribute("AccountAdmin", admin);
+        httpSession.setAttribute("Account", admin);
         notifyService.addInfoMessage("Login successful");
         return "redirect:/";
     }
