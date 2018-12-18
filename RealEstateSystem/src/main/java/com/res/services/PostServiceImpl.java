@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public int postsToday() {
-        int total = Math.toIntExact(this.postRepo.findAll().stream().filter(p -> Objects.equals(p.getPostTime(), new Date())).count());
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+        int total = Math.toIntExact(this.postRepo.findAll().stream().filter(p -> Objects.equals(formatDate.format(p.getPostTime()), formatDate.format(new Date()))).count());
         return 0;
     }
 //
