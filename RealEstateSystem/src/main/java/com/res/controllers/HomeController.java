@@ -15,7 +15,7 @@ public class HomeController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/")
+    @RequestMapping("/posts/DetailPost")
     public String index(Model model) {
         int postsToday = postService.postsToday();
         model.addAttribute("postsToday", postsToday);
@@ -23,6 +23,6 @@ public class HomeController {
 //        List<Post> latest3Posts = latest5Posts.stream()
 //                .limit(3).collect(Collectors.toList());
 //        model.addAttribute("latest3posts", latest3Posts);
-        return "index";
+        return "posts/DetailPost";
     }
 }
