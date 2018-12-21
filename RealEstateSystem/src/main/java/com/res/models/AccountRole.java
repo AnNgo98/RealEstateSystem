@@ -10,11 +10,11 @@ public class AccountRole {
     @Column(name = "Id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "accountRoles", nullable = false)
     private Account account;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "accountRoles", nullable = false)
     private Role role;
 
