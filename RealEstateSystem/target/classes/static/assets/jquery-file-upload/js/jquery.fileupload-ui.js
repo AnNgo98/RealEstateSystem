@@ -206,7 +206,7 @@
 
                                      
             },
-            // Callback for failed (abort or error) uploads:
+            // Callback for failed (abort or errors) uploads:
             fail: function (e, data) {
                 var that = $(this).data('blueimp-fileupload') ||
                         $(this).data('fileupload'),

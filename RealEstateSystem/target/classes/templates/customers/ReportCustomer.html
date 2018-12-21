@@ -74,14 +74,14 @@
                                 <!--{-->
                                 <!--<tr>-->
                                     <!--<td>@(i + 1)</td>-->
-                                    <!--<td>@Model[i].Customer.Customer_ID</td>-->
-                                    <!--<td>@Model[i].Customer.LastName @Model[i].Customer.Firstname</td>-->
-                                    <!--<td>@Model[i].Customer.Email</td>-->
-                                    <!--<td>@(Model[i].Customer.PhoneNumbers.FirstOrDefault().PhoneNumber1)</td>-->
-                                    <!--<td>@Model[i].Customer.Account.UserName</td>-->
+                                    <!--<td>@Model[i].customers.Customer_ID</td>-->
+                                    <!--<td>@Model[i].customers.LastName @Model[i].customers.Firstname</td>-->
+                                    <!--<td>@Model[i].customers.Email</td>-->
+                                    <!--<td>@(Model[i].customers.PhoneNumbers.FirstOrDefault().PhoneNumber1)</td>-->
+                                    <!--<td>@Model[i].customers.Account.UserName</td>-->
                                     <!--<td>-->
                                         <!--@{-->
-                                        <!--if (Model[i].Customer.Blocks.LastOrDefault() != null && (Model[i].Customer.Blocks.LastOrDefault().UnBlockDate == null || Model[i].Customer.Blocks.LastOrDefault().UnBlockDate > DateTime.Now))-->
+                                        <!--if (Model[i].customers.Blocks.LastOrDefault() != null && (Model[i].customers.Blocks.LastOrDefault().UnBlockDate == null || Model[i].customers.Blocks.LastOrDefault().UnBlockDate > DateTime.Now))-->
                                         <!--{-->
                                         <!--<span class="text-danger">Blocked</span>-->
                                         <!--}-->

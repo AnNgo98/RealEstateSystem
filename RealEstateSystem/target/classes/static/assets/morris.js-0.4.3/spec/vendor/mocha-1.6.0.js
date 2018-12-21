@@ -2024,7 +2024,7 @@ function HTML(runner, root) {
         str += "\n(" + test.err.sourceURL + ":" + test.err.line + ")";
       }
 
-      el.appendChild(fragment('<pre class="error">%e</pre>', str));
+      el.appendChild(fragment('<pre class="errors">%e</pre>', str));
     }
 
     // toggle code
@@ -2048,11 +2048,11 @@ function HTML(runner, root) {
 }
 
 /**
- * Display error `msg`.
+ * Display errors `msg`.
  */
 
 function error(msg) {
-  document.body.appendChild(fragment('<div id="error">%s</div>', msg));
+  document.body.appendChild(fragment('<div id="errors">%s</div>', msg));
 }
 
 /**
@@ -4291,7 +4291,7 @@ Suite.prototype.slow = function(ms){
 };
 
 /**
- * Sets whether to bail after first error.
+ * Sets whether to bail after first errors.
  *
  * @parma {Boolean} bail
  * @return {Suite|Number} for chaining

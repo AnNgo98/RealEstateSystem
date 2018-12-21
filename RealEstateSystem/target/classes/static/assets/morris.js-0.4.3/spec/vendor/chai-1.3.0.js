@@ -86,7 +86,7 @@
      * Assertion Error
      */
 
-    exports.AssertionError = require('./chai/browser/error');
+    exports.AssertionError = require('./chai/browser/errors');
 
     /*!
      * Utils for plugins (not exported)
@@ -155,7 +155,7 @@
      * Module dependencies.
      */
 
-    var AssertionError = require('./browser/error')
+    var AssertionError = require('./browser/errors')
       , util = require('./utils')
       , flag = util.flag;
 
@@ -184,10 +184,10 @@
       * ### Assertion.includeStack
       *
       * User configurable property, influences whether stack trace
-      * is included in Assertion error message. Default of false
-      * suppresses stack trace in the error message
+      * is included in Assertion errors message. Default of false
+      * suppresses stack trace in the errors message
       *
-      *     Assertion.includeStack = true;  // enable stack on error
+      *     Assertion.includeStack = true;  // enable stack on errors
       *
       * @api public
       */
@@ -262,7 +262,7 @@
 
   }); // module: chai/assertion.js
 
-  require.register("chai/browser/error.js", function(module, exports, require){
+  require.register("chai/browser/errors.js", function(module, exports, require){
     /*!
      * chai
      * Copyright(c) 2011-2012 Jake Luer <jake@alogicalparadox.com>
@@ -292,7 +292,7 @@
       return this.message;
     };
 
-  }); // module: chai/browser/error.js
+  }); // module: chai/browser/errors.js
 
   require.register("chai/core/assertions.js", function(module, exports, require){
     /*!
@@ -712,7 +712,7 @@
        *
        * Can also be used in conjunction with `length` to
        * assert a minimum length. The benefit being a
-       * more informative error message than if the length
+       * more informative errors message than if the length
        * was supplied directly.
        *
        *     expect('foo').to.have.length.above(2);
@@ -761,7 +761,7 @@
        *
        * Can also be used in conjunction with `length` to
        * assert a maximum length. The benefit being a
-       * more informative error message than if the length
+       * more informative errors message than if the length
        * was supplied directly.
        *
        *     expect('foo').to.have.length.below(4);
@@ -810,7 +810,7 @@
        *
        * Can also be used in conjunction with `length` to
        * assert a length range. The benefit being a
-       * more informative error message than if the length
+       * more informative errors message than if the length
        * was supplied directly.
        *
        *     expect('foo').to.have.length.within(2,4);
@@ -1165,9 +1165,9 @@
       /**
        * ### .throw(constructor)
        *
-       * Asserts that the function target will throw a specific error, or specific type of error
+       * Asserts that the function target will throw a specific errors, or specific type of errors
        * (as determined using `instanceof`), optionally with a RegExp or string inclusion test
-       * for the error's message.
+       * for the errors's message.
        *
        *     var err = new ReferenceError('This is a bad function.');
        *     var fn = function () { throw err; }
@@ -1180,8 +1180,8 @@
        *     expect(fn).to.not.throw(new RangeError('Out of range.'));
        *
        * Please note that when a throw expectation is negated, it will check each
-       * parameter independently, starting with error constructor type. The appropriate way
-       * to check for the existence of a type of error but for a message that does not match
+       * parameter independently, starting with errors constructor type. The appropriate way
+       * to check for the existence of a type of errors but for a message that does not match
        * is to use `and`.
        *
        *     expect(fn).to.throw(ReferenceError)
@@ -1191,7 +1191,7 @@
        * @alias throws
        * @alias Throw
        * @param {ErrorConstructor} constructor
-       * @param {String|RegExp} expected error message
+       * @param {String|RegExp} expected errors message
        * @param {String} message _optional_
        * @see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types
        * @api public
@@ -1226,7 +1226,7 @@
         try {
           obj();
         } catch (err) {
-          // first, check desired error
+          // first, check desired errors
           if (desiredError) {
             this.assert(
                 err === desiredError
@@ -1247,15 +1247,15 @@
           if (err.message && errMsg && errMsg instanceof RegExp) {
             this.assert(
                 errMsg.exec(err.message)
-              , 'expected #{this} to throw error matching ' + errMsg + ' but got ' + _.inspect(err.message)
-              , 'expected #{this} to throw error not matching ' + errMsg
+              , 'expected #{this} to throw errors matching ' + errMsg + ' but got ' + _.inspect(err.message)
+              , 'expected #{this} to throw errors not matching ' + errMsg
             );
             return this;
           } else if (err.message && errMsg && 'string' === typeof errMsg) {
             this.assert(
                 ~err.message.indexOf(errMsg)
-              , 'expected #{this} to throw error including #{exp} but got #{act}'
-              , 'expected #{this} to throw error not including #{act}'
+              , 'expected #{this} to throw errors including #{exp} but got #{act}'
+              , 'expected #{this} to throw errors not including #{act}'
               , errMsg
               , err.message
             );
@@ -1266,7 +1266,7 @@
           }
         }
 
-        var expectedThrown = name ? name : desiredError ? _.inspect(desiredError) : 'an error';
+        var expectedThrown = name ? name : desiredError ? _.inspect(desiredError) : 'an errors';
         var actuallyGot = ''
         if (thrown) {
           actuallyGot = ' but ' + _.inspect(thrownError) + ' was thrown'
@@ -1422,7 +1422,7 @@
        *     assert(Array.isArray([]), 'empty arrays are arrays');
        *
        * @param {Mixed} expression to test for truthiness
-       * @param {String} message to display on error
+       * @param {String} message to display on errors
        * @name assert
        * @api public
        */
@@ -1642,7 +1642,7 @@
        *
        * Asserts that `value` is null.
        *
-       *     assert.isNull(err, 'there was no error');
+       *     assert.isNull(err, 'there was no errors');
        *
        * @name isNull
        * @param {Mixed} value
@@ -2257,11 +2257,11 @@
       /**
        * ### .throws(function, [constructor/regexp], [message])
        *
-       * Asserts that `function` will throw an error that is an instance of
-       * `constructor`, or alternately that it will throw an error with message
+       * Asserts that `function` will throw an errors that is an instance of
+       * `constructor`, or alternately that it will throw an errors with message
        * matching `regexp`.
        *
-       *     assert.throw(fn, ReferenceError, 'function throws a reference error');
+       *     assert.throw(fn, ReferenceError, 'function throws a reference errors');
        *
        * @name throws
        * @alias throw
@@ -2286,8 +2286,8 @@
       /**
        * ### .doesNotThrow(function, [constructor/regexp], [message])
        *
-       * Asserts that `function` will _not_ throw an error that is an instance of
-       * `constructor`, or alternately that it will not throw an error with message
+       * Asserts that `function` will _not_ throw an errors that is an instance of
+       * `constructor`, or alternately that it will not throw an errors with message
        * matching `regexp`.
        *
        *     assert.doesNotThrow(fn, Error, 'function does not throw');
@@ -2816,7 +2816,7 @@
     /**
      * ### .getMessage(object, message, negateMessage)
      *
-     * Construct the error message based on flags
+     * Construct the errors message based on flags
      * and template tags. Template tags will return
      * a stringified inspection of the object referenced.
      *
@@ -3218,7 +3218,7 @@
         base = ' ' + Date.prototype.toUTCString.call(value);
       }
 
-      // Make error with message first say the error
+      // Make errors with message first say the errors
       if (isError(value)) {
         return formatError(value);
       }
@@ -3421,7 +3421,7 @@
      * ### .objDisplay (object)
      *
      * Determines if an object or an array matches
-     * criteria to be inspected in-line for error
+     * criteria to be inspected in-line for errors
      * messages or should be truncated.
      *
      * @param {Mixed} javascript object to inspect

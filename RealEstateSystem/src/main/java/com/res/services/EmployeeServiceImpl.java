@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 //    @Override
 //    public UserDetails loadUserByUsername(String username) {
 //
-//        Employee employee = this.employeeRepo.findAll().stream().filter(p -> Objects.equals(p.getAccount().getUserName(), username)).findFirst()
+//        employees employee = this.employeeRepo.findAll().stream().filter(p -> Objects.equals(p.getAccount().getUserName(), username)).findFirst()
 //                .orElse(null);
 //
 //        if (employee == null) {
@@ -59,7 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 //            throw new UsernameNotFoundException("Account " + username + " was not found in the database");
 //        }
 //
-//        System.out.println("Found Employee: " + employee);
+//        System.out.println("Found employees: " + employee);
 //
 //        List<String> roleNames = this.employeeRepo.getRoleNames(employee.getAccount().getAccountId());
 //

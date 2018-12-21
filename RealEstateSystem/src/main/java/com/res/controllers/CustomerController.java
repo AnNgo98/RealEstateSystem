@@ -5,6 +5,7 @@ import com.res.services.CustomerService;
 import com.res.services.NotificationService;
 import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +25,7 @@ public class CustomerController {
 
     @RequestMapping("/customers/create")
     public String createCustomer(Customer customer) {
-        return "customers/create";
+        return "Customers/AddCustomer";
     }
 
     @RequestMapping(value = "/customers/create", method = RequestMethod.POST)
@@ -42,9 +43,10 @@ public class CustomerController {
         notifyService.addInfoMessage("Create successful");
         return "redirect:/customers/create";
     }
-    @RequestMapping(value = "/Customer/IndexCustomer", method = RequestMethod.POST)
-    public String viewCustomer(){
+    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    public String index(Model model){
         List<Customer> lstCus = customerService.findAll();
-        return "Customer/IndexCustomer";
+        model.addAttribute(lstCus);
+        return "customers/IndexCustomer";
     }
 }

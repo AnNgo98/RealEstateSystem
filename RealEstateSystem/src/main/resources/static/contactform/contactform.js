@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
       var rule = i.attr('data-rule');
 
       if (rule !== undefined) {
-        var ierror = false; // error flag for current input
+        var ierror = false; // errors flag for current input
         var pos = rule.indexOf(':', 0);
         if (pos >= 0) {
           var exp = rule.substr(pos + 1, rule.length);
@@ -63,7 +63,7 @@ jQuery(document).ready(function($) {
       var rule = i.attr('data-rule');
 
       if (rule !== undefined) {
-        var ierror = false; // error flag for current input
+        var ierror = false; // errors flag for current input
         var pos = rule.indexOf(':', 0);
         if (pos >= 0) {
           var exp = rule.substr(pos + 1, rule.length);

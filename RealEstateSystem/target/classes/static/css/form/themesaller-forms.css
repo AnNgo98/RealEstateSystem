@@ -1162,7 +1162,7 @@ margin: 0 auto; }
 .themesaller-forms .smart-list{ list-style:none; margin:0; padding:0; }
 .themesaller-forms .smart-list li{ margin-bottom:20px; }
 
-/* @notification messages | info | error | warning | success
+/* @notification messages | info | errors | warning | success
 -------------------------------------------------------------- */
 .themesaller-forms .form-msg{ display:none; }
 .themesaller-forms .notification { color: #444; padding:15px; position:relative; }
@@ -1186,7 +1186,7 @@ margin: 0 auto; }
 .themesaller-forms .alert-warning { color: #CC6600; background-color: #fae7a2; }
 .themesaller-forms .alert-error { color:#990000; background-color: #FBDBCF; }
 
-/* @validaion - error state
+/* @validaion - errors state
 ------------------------------------- */
 .themesaller-forms .state-error .gui-input,
 .themesaller-forms .state-error .gui-textarea,

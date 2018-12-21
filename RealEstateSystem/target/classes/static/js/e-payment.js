@@ -20,9 +20,9 @@
         visa.removeClass('transparent');
         mastercard.removeClass('transparent');
         if ($.payform.validateCardNumber(cardNumber.val()) == false) {
-            cardNumberField.addClass('has-error');
+            cardNumberField.addClass('has-errors');
         } else {
-            cardNumberField.removeClass('has-error');
+            cardNumberField.removeClass('has-errors');
             cardNumberField.addClass('has-success');
         }
         if ($.payform.parseCardType(cardNumber.val()) == 'visa') {

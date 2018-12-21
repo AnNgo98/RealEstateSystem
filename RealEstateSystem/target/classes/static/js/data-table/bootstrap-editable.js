@@ -176,14 +176,14 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
         error: function(msg) {
             var $group = this.$form.find('.control-group'),
-                $block = this.$form.find('.editable-error-block'),
+                $block = this.$form.find('.editable-errors-block'),
                 lines;
 
             if(msg === false) {
                 $group.removeClass($.fn.editableform.errorGroupClass);
                 $block.removeClass($.fn.editableform.errorBlockClass).empty().hide(); 
             } else {
-                //convert newline to <br> for more pretty error display
+                //convert newline to <br> for more pretty errors display
                 if(msg) {
                     lines = (''+msg).split('\n');
                     for (var i = 0; i < lines.length; i++) {
@@ -203,7 +203,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             //get new value from input
             var newValue = this.input.input2value(); 
 
-            //validation: if validate returns string or truthy value - means error
+            //validation: if validate returns string or truthy value - means errors
             //if returns object like {newValue: '...'} => submitted value is reassigned to it
             var error = this.validate(newValue);
             if ($.type(error) === 'object' && error.newValue !== undefined) {
@@ -253,7 +253,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     return;
                 }
 
-                //if success callback returns string -->  keep form open, show error and activate input               
+                //if success callback returns string -->  keep form open, show errors and activate input
                 if(typeof res === 'string') {
                     this.error(res);
                     this.showForm();
@@ -266,7 +266,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     newValue = res.newValue;
                 }
 
-                //clear error message
+                //clear errors message
                 this.error(false);   
                 this.value = newValue;
                 /**        
@@ -292,7 +292,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 if(typeof this.options.error === 'function') {
                     msg = this.options.error.call(this.options.scope, xhr, newValue);
                 } else {
-                    msg = typeof xhr === 'string' ? xhr : xhr.responseText || xhr.statusText || 'Unknown error!';
+                    msg = typeof xhr === 'string' ? xhr : xhr.responseText || xhr.statusText || 'Unknown errors!';
                 }
 
                 this.error(msg);
@@ -438,7 +438,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         url: function(params) {
             var d = new $.Deferred;
             if(params.value === 'abc') {
-                return d.reject('error message'); //returning error via deferred object
+                return d.reject('errors message'); //returning errors via deferred object
             } else {
                 //async saving data in js model
                 someModel.asyncSaveMethod({
@@ -512,7 +512,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         **/          
         send: 'auto', 
         /**
-        Function for client-side validation. If returns string - means validation not passed and string showed as error.
+        Function for client-side validation. If returns string - means validation not passed and string showed as errors.
         Since 1.5.1 you can modify submitted value by returning object from `validate`: 
         `{newValue: '...'}` or `{newValue: '...', msg: '...'}`
 
@@ -530,8 +530,8 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         /**
         Success callback. Called when value successfully sent on server and **response status = 200**.  
         Usefull to work with json response. For example, if your backend response can be <code>{success: true}</code>
-        or <code>{success: false, msg: "server error"}</code> you can check it inside this callback.  
-        If it returns **string** - means error occured and string is shown as error message.  
+        or <code>{success: false, msg: "server errors"}</code> you can check it inside this callback.
+        If it returns **string** - means errors occured and string is shown as errors message.
         If it returns **object like** <code>{newValue: &lt;something&gt;}</code> - it overwrites value, submitted by user.  
         Otherwise newValue simply rendered into element.
         
@@ -546,15 +546,15 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         success: null,
         /**
         Error callback. Called when request failed (response status != 200).  
-        Usefull when you want to parse error response and display a custom message.
-        Must return **string** - the message to be displayed in the error block.
+        Usefull when you want to parse errors response and display a custom message.
+        Must return **string** - the message to be displayed in the errors block.
                 
         @property error 
         @type function
         @default null
         @since 1.4.4
         @example
-        error: function(response, newValue) {
+        errors: function(response, newValue) {
             if(response.status === 500) {
                 return 'Service unavailable. Please try later.';
             } else {
@@ -612,12 +612,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
     /*
     Note: following params could redefined in engine: bootstrap or jqueryui:
-    Classes 'control-group' and 'editable-error-block' must always present!
+    Classes 'control-group' and 'editable-errors-block' must always present!
     */      
     $.fn.editableform.template = '<form class="form-inline editableform">'+
     '<div class="control-group">' + 
     '<div><div class="editable-input"></div><div class="editable-buttons"></div></div>'+
-    '<div class="editable-error-block"></div>' + 
+    '<div class="editable-errors-block"></div>' +
     '</div>' + 
     '</form>';
 
@@ -628,11 +628,11 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
     $.fn.editableform.buttons = '<button type="submit" class="editable-submit">ok</button>'+
     '<button type="button" class="editable-cancel">cancel</button>';      
 
-    //error class attached to control-group
+    //errors class attached to control-group
     $.fn.editableform.errorGroupClass = null;  
 
-    //error class attached to editable-error-block
-    $.fn.editableform.errorBlockClass = 'editable-error';
+    //errors class attached to editable-errors-block
+    $.fn.editableform.errorBlockClass = 'editable-errors';
     
     //engine
     $.fn.editableform.engine = 'jquery';
@@ -1206,7 +1206,7 @@ Applied as jQuery method.
                 if(params.response && params.response.success) {
                     alert('value: ' + params.newValue + ' with pk: ' + pk + ' saved!');
                 } else {
-                    alert('error!'); 
+                    alert('errors!');
                 } 
             });
             **/             
@@ -2029,14 +2029,14 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             Internally it runs client-side validation for all fields and submits only in case of success.  
             See <a href="#newrecord">creating new records</a> for details.  
             Since 1.5.1 `submit` can be applied to single element to send data programmatically. In that case
-            `url`, `success` and `error` is taken from initial options and you can just call `$('#username').editable('submit')`. 
+            `url`, `success` and `errors` is taken from initial options and you can just call `$('#username').editable('submit')`.
             
             @method submit(options)
             @param {object} options 
             @param {object} options.url url to submit data 
             @param {object} options.data additional data to submit
             @param {object} options.ajaxOptions additional ajax options
-            @param {function} options.error(obj) error handler 
+            @param {function} options.errors(obj) errors handler
             @param {function} options.success(obj,config) success handler
             @returns {Object} jQuery object
             **/
@@ -2076,7 +2076,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                             type: 'POST'  
                         };
                         
-                        // use success / error from options 
+                        // use success / errors from options
                         config.success = config.success || editable.options.success;
                         config.error = config.error || editable.options.error;
                         
@@ -2096,7 +2096,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                             config.success.call($elems, response, config);
                         } : $.noop;
                                   
-                    // ajax error callabck
+                    // ajax errors callabck
                     ajaxOptions.error = typeof config.error === 'function' ? function() {
                              config.error.apply($elems, arguments);
                         } : $.noop;
@@ -2113,7 +2113,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                     
                     // perform ajax request
                     $.ajax(ajaxOptions);
-                } else { //client-side validation error
+                } else { //client-side validation errors
                     if(typeof config.error === 'function') {
                         config.error.call($elems, errors);
                     }
@@ -2350,7 +2350,7 @@ To create your own input you can inherit from this class.
            this.$tpl = $(this.options.tpl); //whole tpl as jquery object    
            this.$input = this.$tpl;         //control itself, can be changed in render method
            this.$clear = null;              //clear button
-           this.error = null;               //error message, if input cannot be rendered           
+           this.error = null;               //errors message, if input cannot be rendered
        },
        
        /**
@@ -2647,7 +2647,7 @@ List - abstract class for inputs that have source option loaded from js array or
                             success.call(this);
                         }, this));
 
-                        //also collecting error callbacks
+                        //also collecting errors callbacks
                         cache.err_callbacks.push($.proxy(error, this));
                         return;
                     } else { //no cache yet, activate it
@@ -2680,7 +2680,7 @@ List - abstract class for inputs that have source option loaded from js array or
                         } else {
                             error.call(this);
                             if(cache) {
-                                //run error callbacks for other fields waiting for this source
+                                //run errors callbacks for other fields waiting for this source
                                 $.each(cache.err_callbacks, function () { this.call(); }); 
                             }
                         }
@@ -2689,7 +2689,7 @@ List - abstract class for inputs that have source option loaded from js array or
                         error.call(this);
                         if(cache) {
                              cache.loading = false;
-                             //run error callbacks for other fields
+                             //run errors callbacks for other fields
                              $.each(cache.err_callbacks, function () { this.call(); }); 
                         }
                     }, this)
@@ -2841,7 +2841,7 @@ List - abstract class for inputs that have source option loaded from js array or
         **/         
         prepend: false,
         /**
-        Error message when list cannot be loaded (e.g. ajax error)
+        Error message when list cannot be loaded (e.g. ajax errors)
         
         @property sourceError 
         @type string
@@ -3581,7 +3581,7 @@ Time
     var Time = function (options) {
         this.init('time', options, Time.defaults);
     };
-    //inherit from abstract, as inheritance from text gives selection error.
+    //inherit from abstract, as inheritance from text gives selection errors.
     $.fn.editableutils.inherit(Time, $.fn.editabletypes.abstractinput);
     $.extend(Time.prototype, {
         render: function() {
@@ -4640,7 +4640,7 @@ Editableform based on Twitter Bootstrap 3
         initTemplate: function() {
             this.$form = $($.fn.editableform.template); 
             this.$form.find('.control-group').addClass('form-group');
-            this.$form.find('.editable-error-block').addClass('help-block');
+            this.$form.find('.editable-errors-block').addClass('help-block');
         },
         initInput: function() {  
             pInitInput.apply(this);
@@ -4685,8 +4685,8 @@ Editableform based on Twitter Bootstrap 3
         '<i class="glyphicon glyphicon-remove"></i>'+
       '</button>';         
     
-    //error classes
-    $.fn.editableform.errorGroupClass = 'has-error';
+    //errors classes
+    $.fn.editableform.errorGroupClass = 'has-errors';
     $.fn.editableform.errorBlockClass = null;  
     //engine
     $.fn.editableform.engine = 'bs3';  
@@ -6616,7 +6616,7 @@ $(function(){
        },
 
        input2value: function() { 
-           //date may be cleared, in that case getDate() triggers error
+           //date may be cleared, in that case getDate() triggers errors
            var dt = this.$input.data('datetimepicker');
            return dt.date ? dt.getDate() : null;
        },

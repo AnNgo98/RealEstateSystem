@@ -11,7 +11,7 @@
     });
 
     $.mockjax({
-        url: '/error',
+        url: '/errors',
         status: 400,
         statusText: 'Bad Request',
         response: function(settings) {
@@ -35,7 +35,7 @@
             this.responseText = [ 
              {value: 0, text: 'Guest'},
              {value: 1, text: 'Service'},
-             {value: 2, text: 'Customer'},
+             {value: 2, text: 'customers'},
              {value: 3, text: 'Operator'},
              {value: 4, text: 'Support'},
              {value: 5, text: 'Admin'}

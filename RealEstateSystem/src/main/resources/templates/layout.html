@@ -96,16 +96,16 @@
                         <li class="active">
                             <a class="has-arrow" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Customers</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Customers" href="Customer/IndexCustomer.html" th:href="@{/Customer/IndexCustomer.html}"><span class="mini-sub-pro">All Customers</span></a></li>
-                                <li><a title="Reported Customers" href="Customer/ReportCustomer.html" th:href="@{/Customer/ReportCustomer.html}"><span class="mini-sub-pro">Reported Customers</span></a></li>
-                                <li><a title="Add Customer" href="Customer/AddCustomer.html" th:href="@{/Customer/AddCustomer.html}"><span class="mini-sub-pro">Add Customer</span></a></li>
+                                <li><a title="All Customers" href="customers" th:href="@{/customers}"><span class="mini-sub-pro">All Customers</span></a></li>
+                                <li><a title="Reported Customers" href="customers/reported" th:href="@{/customers/reported}"><span class="mini-sub-pro">Reported Customers</span></a></li>
+                                <li><a title="Add Customer" href="customers/create" th:href="@{/customers/create}"><span class="mini-sub-pro">Add Customer</span></a></li>
                             </ul>
                         </li>
                         <li class="active">
                             <a class="has-arrow" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Employee</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Students" href="Employee/ViewEmp.html" th:href="@{/Employee/ViewEmp.html}"><span class="mini-sub-pro">All Employee</span></a></li>
-                                <li><a title="Add Students" href="Employee/AddEmp.html" th:href="@{Employee/AddEmp.html}"><span class="mini-sub-pro">Add Employee</span></a></li>
+                                <li><a title="All Students" href="employees" th:href="@{/employees}"><span class="mini-sub-pro">All Employee</span></a></li>
+                                <li><a title="Add Students" href="employees/create" th:href="@{/employees/create}"><span class="mini-sub-pro">Add Employee</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -160,7 +160,7 @@
                                                             <a ><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
                                                         <li>
-                                                            <a href="index.html" th:href="@{/}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                            <a href="index.html" th:href="@{/logout}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -197,15 +197,15 @@
                                             <a data-toggle="collapse" data-target="#demopro" href="#">Customers<span
                                                     class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
-                                                <li><a title="All Customers" href="Customer/IndexCustomer.html" th:href="@{/Customer/IndexCustomer.html}"><span class="mini-sub-pro">All Customers</span></a></li>
-                                                <li><a title="Reported Customers" href="Customer/ReportCustomer.html" th:href="@{/Customer/ReportCustomer.html}"><span class="mini-sub-pro">Reported Customers</span></a></li>
-                                                <li><a title="Add Customer" href="Customer/AddCustomer.html" th:href="@{/Customer/AddCustomer.html}"><span class="mini-sub-pro">Add Customer</span></a></li>
+                                                <li><a title="All Customers" href="/customers" th:href="@{/customers}"><span class="mini-sub-pro">All Customers</span></a></li>
+                                                <li><a title="Reported Customers" href="customers/reported" th:href="@{/customers/reported}"><span class="mini-sub-pro">Reported Customers</span></a></li>
+                                                <li><a title="Add Customer" href="customers/create" th:href="@{/customers/create}"><span class="mini-sub-pro">Add Customer</span></a></li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#democrou">Employee <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="democrou" class="collapse dropdown-header-top">
-                                                <li><a title="All Students" href="Employee/ViewEmp.html" th:href="@{/Employee/ViewEmp.html}"><span class="mini-sub-pro">All Employee</span></a></li>
-                                                <li><a title="Add Students" href="Employee/AddEmp.html" th:href="@{Employee/AddEmp.html}"><span class="mini-sub-pro">Add Employee</span></a></li>
+                                                <li><a title="All Students" href="employees" th:href="@{/employees}"><span class="mini-sub-pro">All Employee</span></a></li>
+                                                <li><a title="Add Students" href="employees/create" th:href="@{employees/create}"><span class="mini-sub-pro">Add Employee</span></a></li>
                                             </ul>
                                         </li>
                                     </ul>

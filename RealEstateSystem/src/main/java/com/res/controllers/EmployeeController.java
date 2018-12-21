@@ -37,7 +37,7 @@ public class EmployeeController {
 //            return "login";
 //        }
 //
-//        Employee admin = this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
+//        employees admin = this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
 //
 //        if (admin.getEmployee_ID() == 0) {
 //            notifyService.addErrorMessage("Username or password is incorrect!");

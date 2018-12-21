@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Account " + userName + " was not found in the database");
         }
 
-        System.out.println("Found Employee: " + employee);
+        System.out.println("Found employees: " + employee);
 
         List<String> roleNames = this.employeeService.getRoleNames(employee.getAccount().getAccountId());
 
