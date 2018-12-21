@@ -25,27 +25,27 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginAdmin(LoginForm loginForm) {
         return "login";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String loginAdmin(@Valid LoginForm loginForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
-            return "login";
-        }
-
-        Employee admin = this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
-
-        if (admin.getEmployee_ID() == 0) {
-            notifyService.addErrorMessage("Username or password is incorrect!");
-            return "login";
-        }
-
-        httpSession.setAttribute("Account", admin);
-        notifyService.addInfoMessage("Login successful");
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "login", method = RequestMethod.POST)
+//    public String loginAdmin(@Valid LoginForm loginForm, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            notifyService.addErrorMessage("Please fill the form correctly!");
+//            return "login";
+//        }
+//
+//        Employee admin = this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
+//
+//        if (admin.getEmployee_ID() == 0) {
+//            notifyService.addErrorMessage("Username or password is incorrect!");
+//            return "login";
+//        }
+//
+//        httpSession.setAttribute("Account", admin);
+//        notifyService.addInfoMessage("Login successful");
+//        return "redirect:/";
+//    }
 }

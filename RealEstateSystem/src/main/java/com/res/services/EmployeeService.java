@@ -1,7 +1,7 @@
 package com.res.services;
 
 import com.res.models.Employee;
-import com.res.models.Employee;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -13,5 +13,6 @@ public interface EmployeeService {
     List<Employee> findByEmail(String email);
     boolean createOrUpdate(Employee employee);
 
-    Employee findByUsernamePassword(String username, String password);
+//    UserDetails loadUserByUsername(String username);
+    List<String> getRoleNames(int account_ID);
 }
