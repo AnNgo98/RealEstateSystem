@@ -22,11 +22,8 @@ public class Customer {
     @Column(nullable = false, length = 200)
     private String address;
 
-    @Column(nullable = false, length = 100)
-    private String username;
-
-    @Column(nullable = false, length = 100)
-    private String passwordHash;
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private Account account;
 
     @Column(nullable = false)
     private Date createDate = new Date();
@@ -39,10 +36,6 @@ public class Customer {
 
     public int getCustomer_ID() {
         return customer_ID;
-    }
-
-    public void setCustomer_ID(int customer_ID) {
-        this.customer_ID = customer_ID;
     }
 
     public String getFullname() {
@@ -69,20 +62,12 @@ public class Customer {
         this.address = address;
     }
 
-    public String getUsername() {
-        return username;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Date getCreateDate() {

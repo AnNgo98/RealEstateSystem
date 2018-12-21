@@ -19,10 +19,6 @@ public class PostImages {
         return image_ID;
     }
 
-    public void setImage_ID(int image_ID) {
-        this.image_ID = image_ID;
-    }
-
     public Post getPost() {
         return post;
     }

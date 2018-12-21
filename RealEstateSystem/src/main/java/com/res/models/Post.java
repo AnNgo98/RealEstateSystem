@@ -63,10 +63,6 @@ public class Post {
         return post_ID;
     }
 
-    public void setPost_ID(int post_ID) {
-        this.post_ID = post_ID;
-    }
-
     public PostType getPostType() {
         return postType;
     }

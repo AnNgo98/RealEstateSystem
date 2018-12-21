@@ -30,11 +30,8 @@ public class Employee {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Employee manager;
 
-    @Column(nullable = false, length = 50)
-    private String username;
-
-    @Column(nullable = false, length = 100)
-    private String password;
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private Account account;
 
     @OneToMany(mappedBy = "manager")
     private Set<Employee> employees = new HashSet<>();
@@ -44,10 +41,6 @@ public class Employee {
 
     public int getEmployee_ID() {
         return employee_ID;
-    }
-
-    public void setEmployee_ID(int employee_ID) {
-        this.employee_ID = employee_ID;
     }
 
     public String getFullname() {
@@ -98,20 +91,12 @@ public class Employee {
         this.manager = manager;
     }
 
-    public String getUsername() {
-        return username;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Set<Employee> getEmployees() {

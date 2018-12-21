@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> findByUsername(String username) {
-        return (List<Customer>) this.customerRepo.findAll().stream().filter(p -> p.getUsername().contains(username));
+        return (List<Customer>) this.customerRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username));
     }
 
     @Override

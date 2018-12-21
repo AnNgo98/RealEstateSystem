@@ -65,8 +65,9 @@
 </head>
 
 <body>
-
-<span th:unless="${Account}" th:action="@{/login}"></span>
+<%
+%>
+<span th:unless="${Account}" th:action="@{login/}"></span>
 <span th:unless="${session.Account}" th:action="@{/login}"></span>
 <span th:unless="${session.getAttribute(Account)}" th:action="@{/login}"></span>
 

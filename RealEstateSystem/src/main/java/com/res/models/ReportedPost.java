@@ -31,10 +31,6 @@ public class ReportedPost {
         return report_ID;
     }
 
-    public void setReport_ID(int report_ID) {
-        this.report_ID = report_ID;
-    }
-
     public Post getPost() {
         return post;
     }
