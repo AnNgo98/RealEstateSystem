@@ -3,13 +3,16 @@ package com.res.controllers;
 import com.res.models.Customer;
 import com.res.services.CustomerService;
 import com.res.services.NotificationService;
+import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 public class CustomerController {
 
@@ -38,5 +41,10 @@ public class CustomerController {
 
         notifyService.addInfoMessage("Create successful");
         return "redirect:/customers/create";
+    }
+    @RequestMapping(value = "/Customer/IndexCustomer", method = RequestMethod.POST)
+    public String viewCustomer(){
+        List<Customer> lstCus = customerService.findAll();
+        return "Customer/IndexCustomer";
     }
 }
