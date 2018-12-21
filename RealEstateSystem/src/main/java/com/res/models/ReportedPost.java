@@ -24,7 +24,7 @@ public class ReportedPost {
 
     private boolean status;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Employee censor;
 
     public int getReport_ID() {
