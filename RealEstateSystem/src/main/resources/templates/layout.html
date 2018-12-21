@@ -65,6 +65,12 @@
 </head>
 
 <body>
+<%
+%>
+<span th:unless="${Account}" th:action="@{login/}"></span>
+<span th:unless="${session.Account}" th:action="@{/login}"></span>
+<span th:unless="${session.getAttribute(Account)}" th:action="@{/login}"></span>
+
 <header th:fragment="site-header" th:remove="tag">
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">

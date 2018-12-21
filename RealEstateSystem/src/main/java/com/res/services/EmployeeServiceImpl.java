@@ -55,7 +55,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = this.employeeRepo.findAll().stream().filter(p -> Objects.equals(p.getUsername(), username)).findFirst()
                 .orElse(null);
 
-        if(!passwordEncoder.checkPassword(password, employee.getPassword())){
+        String ash = passwordEncoder.hashPassword(password);
+
+        if(employee == null || !passwordEncoder.checkPassword(password, employee.getPassword())){
             return new Employee();
         }
 

@@ -26,7 +26,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String loginAdmin() {
+    public String loginAdmin(LoginForm loginForm) {
         return "login";
     }
 
@@ -37,10 +37,10 @@ public class EmployeeController {
             return "login";
         }
 
-        Employee admin =this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
+        Employee admin = this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
 
         if (admin.getEmployee_ID() == 0) {
-            notifyService.addErrorMessage("Invalid login!");
+            notifyService.addErrorMessage("Username or password is incorrect!");
             return "login";
         }
 

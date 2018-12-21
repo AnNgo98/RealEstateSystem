@@ -65,6 +65,11 @@
 </head>
 
 <body>
+
+<span th:unless="${Account}" th:action="@{/login}"></span>
+<span th:unless="${session.Account}" th:action="@{/login}"></span>
+<span th:unless="${session.getAttribute(Account)}" th:action="@{/login}"></span>
+
 <header th:fragment="site-header" th:remove="tag">
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
@@ -216,10 +221,8 @@
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#democrou" href="#">Employee <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="democrou" class="collapse dropdown-header-top">
-                                                <li><a href="#">All Employee</a>
-                                                </li>
-                                                <li><a href="#">Add Employee</a>
-                                                </li>
+                                                <li><a href="#">All Employee</a></li>
+                                                <li><a href="#">Add Employee</a></li>
                                             </ul>
                                         </li>
                                     </ul>

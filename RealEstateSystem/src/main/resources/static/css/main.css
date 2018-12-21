@@ -34,6 +34,11 @@ html {
     text-shadow: none;
 }
 
+.formError {
+    color: red;
+    text-color: red;
+}
+
 /*
  * A better looking default horizontal rule
  */

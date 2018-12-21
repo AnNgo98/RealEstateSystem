@@ -8,7 +8,7 @@ public class LoginForm {
     private String username;
 
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Password size should be in the range [1...30]")
     private String password;
 
     public String getUsername() {
