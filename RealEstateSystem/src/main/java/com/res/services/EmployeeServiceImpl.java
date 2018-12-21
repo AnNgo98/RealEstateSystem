@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findByUsername(String username) {
-        return (List<Employee>) this.employeeRepo.findAll().stream().filter(p -> p.getUsername().contains(username));
+        return (List<Employee>) this.employeeRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username));
     }
 
     @Override
@@ -52,12 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findByUsernamePassword(String username, String password) {
 
-        Employee employee = this.employeeRepo.findAll().stream().filter(p -> Objects.equals(p.getUsername(), username)).findFirst()
+        Employee employee = this.employeeRepo.findAll().stream().filter(p -> Objects.equals(p.getAccount().getUserName(), username)).findFirst()
                 .orElse(null);
 
         String ash = passwordEncoder.hashPassword(password);
 
-        if(employee == null || !passwordEncoder.checkPassword(password, employee.getPassword())){
+        if(employee == null || !passwordEncoder.checkPassword(password, employee.getAccount().getPassword())){
             return new Employee();
         }
 

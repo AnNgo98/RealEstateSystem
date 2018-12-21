@@ -22,10 +22,6 @@ public class RealEstaleType {
         return realestate_ID;
     }
 
-    public void setRealestate_ID(int realestate_ID) {
-        this.realestate_ID = realestate_ID;
-    }
-
     public String getRealestate_Title() {
         return realestate_Title;
     }

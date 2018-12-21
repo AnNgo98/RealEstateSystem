@@ -24,10 +24,6 @@ public class Direction {
         return direction_ID;
     }
 
-    public void setDirection_ID(int direction_ID) {
-        this.direction_ID = direction_ID;
-    }
-
     public String getDirection_Title() {
         return direction_Title;
     }

@@ -33,10 +33,6 @@ public class PostDetails {
         return details_ID;
     }
 
-    public void setDetails_ID(int details_ID) {
-        this.details_ID = details_ID;
-    }
-
     public int getBedroom() {
         return bedroom;
     }

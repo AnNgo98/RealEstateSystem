@@ -21,10 +21,6 @@ public class PostStatus {
         return status_ID;
     }
 
-    public void setStatus_ID(int status_ID) {
-        this.status_ID = status_ID;
-    }
-
     public String getStatus_Title() {
         return status_Title;
     }

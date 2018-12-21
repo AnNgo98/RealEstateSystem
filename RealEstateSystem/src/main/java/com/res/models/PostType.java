@@ -22,10 +22,6 @@ public class PostType {
         return type_ID;
     }
 
-    public void setType_ID(int type_ID) {
-        this.type_ID = type_ID;
-    }
-
     public String getType_Tittle() {
         return type_Tittle;
     }
