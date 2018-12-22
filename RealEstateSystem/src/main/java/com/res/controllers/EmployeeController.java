@@ -25,10 +25,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginAdmin(LoginForm loginForm) {
-        return "login";
-    }
+
 
 //    @RequestMapping(value = "login", method = RequestMethod.POST)
 //    public String loginAdmin(@Valid LoginForm loginForm, BindingResult bindingResult) {
