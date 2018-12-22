@@ -71,13 +71,13 @@
         </div>
         <!-- /login?errors=true -->
         <div class="formError" th:if="${#httpServletRequest.getParameter('errors') == 'true'}">
-            Login Failed!!!<br/>
+            Login Failed !!!<br/>
             <span th:if="${#session != null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
                   th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
                 Static summary
             </span>
         </div>
-        
+
         <div class="content-error">
             <div class="hpanel">
                 <div class="panel-body">

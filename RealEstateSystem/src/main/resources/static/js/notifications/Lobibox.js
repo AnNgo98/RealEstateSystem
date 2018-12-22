@@ -23,7 +23,7 @@ var Lobibox = Lobibox || {};
         return new LobiboxProgress(options);
     };
     //Create empty objects in order user to be able to set default options in the following way
-    //Lobibox.errors.DEFAULT_OPTIONS = object;
+    //Lobibox.error.DEFAULT_OPTIONS = object;
     //Lobibox.success.DEFAULT_OPTIONS = object;
     //Lobibox.warning.DEFAULT_OPTIONS = object;
     //Lobibox.info.DEFAULT_OPTIONS = object;
@@ -538,7 +538,7 @@ var Lobibox = Lobibox || {};
         bodyClass: 'lobibox-open',
 
         modalClasses: {
-            'error': 'lobibox-errors',
+            'error': 'lobibox-error',
             'success': 'lobibox-success',
             'info': 'lobibox-info',
             'warning': 'lobibox-warning',
@@ -701,12 +701,12 @@ var Lobibox = Lobibox || {};
 
         isValid: function () {
             var me = this,
-                $error = me.$el.find('.lobibox-input-errors-message');
+                $error = me.$el.find('.lobibox-input-error-message');
 
             if (me.$options.required && !me.getValue()){
                 me.$input.addClass('invalid');
                 if ($error.length === 0){
-                    me.$el.find('.lobibox-body').append('<p class="lobibox-input-errors-message">'+me.$options.errorMessage+'</p>');
+                    me.$el.find('.lobibox-body').append('<p class="lobibox-input-error-message">'+me.$options.errorMessage+'</p>');
                     me._position();
                     me.$input.focus();
                 }
@@ -1541,7 +1541,7 @@ var Lobibox = Lobibox || {};
             sound: 'sound2'
         },
         error: {
-            'class': 'lobibox-notify-errors',
+            'class': 'lobibox-notify-error',
             'title': 'Error',
             sound: 'sound4'
         },

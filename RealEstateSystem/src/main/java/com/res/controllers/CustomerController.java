@@ -55,7 +55,12 @@ public class CustomerController {
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public String index(Model model){
         List<Customer> lstCus = customerService.findAll();
-        model.addAttribute(lstCus);
+        model.addAttribute("lstCus",lstCus);
         return "customers/IndexCustomer";
+    }
+    @RequestMapping(value = "/customers/create", method = RequestMethod.GET)
+    public String report(Model model)
+    {
+        return "customers/AddCustomer";
     }
 }

@@ -262,7 +262,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             $el.focus();
 
-            /* make sure el received focus so we do not errors out when trying to manipulate the caret.
+            /* make sure el received focus so we do not error out when trying to manipulate the caret.
                 sometimes modals or others listeners may steal it after its set */
             if ($el.is(":visible") && el === document.activeElement) {
 
@@ -547,7 +547,7 @@ the specific language governing permissions and limitations under the Apache Lic
     /**
      * Checks if the formatter function should be used.
      *
-     * Throws an errors if it is not a function. Returns true if it should be used,
+     * Throws an error if it is not a function. Returns true if it should be used,
      * false if no formatting should be performed.
      *
      * @param formatter

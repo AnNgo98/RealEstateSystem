@@ -963,7 +963,7 @@ function hsl2hsv(hsl) {
 
   if(l === 0) {
       // no need to do calc on black
-      // also avoids divide by 0 errors
+      // also avoids divide by 0 error
       return [0, 0, 0];
   }
 
@@ -6543,7 +6543,7 @@ module.exports = function(Chart) {
 			// B1 is the bottom axis
 			// There are also 4 quadrant-like locations (left to right instead of clockwise) reserved for chart overlays
 			// These locations are single-box locations only, when trying to register a chartArea location that is already taken,
-			// an errors will be thrown.
+			// an error will be thrown.
 			//
 			// |----------------------------------------------------|
 			// |                  T1 (Full Width)                   |
@@ -9417,7 +9417,7 @@ module.exports = function(Chart) {
 			var x = vm.x;
 			var y = vm.y;
 			var color = Chart.helpers.color;
-			var errMargin = 1.01; // 1.01 is margin for Accumulated errors. (Especially Edge, IE.)
+			var errMargin = 1.01; // 1.01 is margin for Accumulated error. (Especially Edge, IE.)
 			var ratio = 0;
 
 			if (vm.skip) {
