@@ -52,7 +52,6 @@ public class CustomerController {
         notifyService.addInfoMessage("Create successful");
         return "redirect:/customers/create";
     }
-    
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public String index(Model model){
         List<Customer> lstCus = customerService.findAll();
