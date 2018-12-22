@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginAdmin(LoginForm loginForm) {
+    public String loginAdmin() {
         return "login";
     }
 

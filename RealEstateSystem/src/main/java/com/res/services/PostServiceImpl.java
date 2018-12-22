@@ -1,8 +1,10 @@
 package com.res.services;
 
 import com.res.models.Post;
+import com.res.models.ReportedPost;
 import com.res.repositories.PostRepository;
 import com.res.repositories.PostStatusRepository;
+import com.res.repositories.ReportedPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -19,6 +22,8 @@ public class PostServiceImpl implements PostService {
     private PostRepository postRepo;
     @Autowired
     private PostStatusRepository postStatusRepo;
+    @Autowired
+    ReportedPostRepository reportedPostRepo;
 
     @Override
     public int postsToday() {
@@ -30,6 +35,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findAll() {
         return this.postRepo.findAll();
+    }
+
+    @Override
+    public List<Post> pendingPosts() {
+        return this.postRepo.findAll().stream().filter(p -> Objects.equals(p.getStatus().getStatus_ID(), 1) || Objects.equals(p.getStatus(), null)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ReportedPost> reportedPosts() {
+        return this.reportedPostRepo.findAll().stream().filter(p -> Objects.equals(p.isStatus(), false) || Objects.equals(p.getCensor(), null)).collect(Collectors.toList());
     }
 
     @Override

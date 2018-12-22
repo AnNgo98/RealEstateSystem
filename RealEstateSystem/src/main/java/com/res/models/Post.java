@@ -87,8 +87,8 @@ public class Post {
         this.title = title;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrice() {
+        return String.format("%,.0f", price);
     }
 
     public void setPrice(double price) {

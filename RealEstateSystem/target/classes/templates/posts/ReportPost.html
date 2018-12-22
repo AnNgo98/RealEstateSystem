@@ -55,10 +55,9 @@
                             <table class="table" id="ReportPostsTable">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
                                     <th>ID</th>
+                                    <th>Title</th>
                                     <th>Poster</th>
-                                    <th>Post Time</th>
                                     <th>Reporter</th>
                                     <th>Report Time</th>
                                     <th>Reason</th>
@@ -66,6 +65,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                <tr th:each ="p : ${lstReported}">
+                                    <td th:text="${p.post.post_ID}"></td>
+                                    <td th:text="${p.post.title}"></td>
+                                    <td th:text="${p.post.author.fullname}"></td>
+                                    <td th:text="${p.reporter.fullname}"></td>
+                                    <td th:text="${p.reportedTime}"></td>
+                                    <td th:text="${p.reason}"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnedit" th:data-id="${p.report_ID}" data-toggle="modal" data-target="#PrimaryModalalert">Details</button>
+                                    </td>
+                                </tr>
                                 <!--@{-->
                                 <!--for (int i = 0; i < Model.Count; i++)-->
                                 <!--{-->

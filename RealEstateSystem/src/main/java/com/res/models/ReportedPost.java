@@ -79,6 +79,7 @@ public class ReportedPost {
         this.censor = censor;
     }
 
+
     public ReportedPost() {
     }
 }

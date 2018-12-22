@@ -2,6 +2,7 @@ package com.res.services;
 
 
 import com.res.models.Post;
+import com.res.models.ReportedPost;
 
 import java.util.List;
 
@@ -9,6 +10,10 @@ public interface PostService {
     int postsToday();
 
     List<Post> findAll();
+
+    List<Post> pendingPosts();
+
+    List<ReportedPost> reportedPosts();
 
     Post findById(int id);
 
