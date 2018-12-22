@@ -17,7 +17,7 @@
         var blockURL = '/Censor/Customer/BlockCus_Report';
         $("#btnBlockCus_Report").click(function () {
             var $buttonClicked = $(this);
-            //if (confirm("Block this Customer ?")) {
+            //if (confirm("Block this customers ?")) {
             var id = $buttonClicked.attr('data-id');
             $.ajax({
                 type: "GET",
@@ -90,7 +90,7 @@
 </div>
 <div class="slideshow-container">
     <div class="mySlides1">
-        <!--<img src="~/Images/Customer/@Model.Customer.Avatar_URL"/>-->
+        <!--<img src="~/Images/customers/@Model.customers.Avatar_URL"/>-->
     </div>
 </div>
 <div class="sparkline8-list">
@@ -98,23 +98,23 @@
         <tbody>
         <tr>
             <td>Employee ID:</td>
-            <!--<td>@Model.Customer.Customer_ID</td>-->
+            <!--<td>@Model.customers.Customer_ID</td>-->
         </tr>
         <tr>
             <td>Name:</td>
-            <!--<td>@Model.Customer.LastName @Model.Customer.Firstname</td>-->
+            <!--<td>@Model.customers.LastName @Model.customers.Firstname</td>-->
         </tr>
         <tr>
             <td>Email:</td>
-            <!--<td>@Model.Customer.Email</td>-->
+            <!--<td>@Model.customers.Email</td>-->
         </tr>
         <tr>
             <td>Address:</td>
-            <!--<td>@Model.Customer.Address</td>-->
+            <!--<td>@Model.customers.Address</td>-->
         </tr>
         <tr>
             <td>Phone:</td>
-            <!--<td>@Model.Customer.PhoneNumbers.LastOrDefault().PhoneNumber1</td>-->
+            <!--<td>@Model.customers.PhoneNumbers.LastOrDefault().PhoneNumber1</td>-->
         </tr>
         </tbody>
     </table>

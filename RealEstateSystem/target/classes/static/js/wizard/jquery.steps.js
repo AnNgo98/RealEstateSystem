@@ -112,7 +112,7 @@ var _tabpanelSuffix = "-p-";
 var _titleSuffix = "-h-";
 
 /**
- * An error message for an "index out of range" error.
+ * An errors message for an "index out of range" errors.
  *
  * @final
  * @private
@@ -122,7 +122,7 @@ var _titleSuffix = "-h-";
 var _indexOutOfRangeErrorMessage = "Index out of range.";
 
 /**
- * An error message for an "missing corresponding element" error.
+ * An errors message for an "missing corresponding element" errors.
  *
  * @final
  * @private
@@ -755,7 +755,7 @@ function paginationClick(wizard, options, state, index)
         parent._enableAria();
         anchor.click();
 
-        // An error occured
+        // An errors occured
         if (oldIndex === state.currentIndex && isDisabled)
         {
             // Disable the step again if current index has not changed; prevents click action.
@@ -1286,7 +1286,7 @@ function throwError(message)
 }
 
 /**
- * Checks an argument for null or undefined and throws an error if one check applies.
+ * Checks an argument for null or undefined and throws an errors if one check applies.
  *
  * @static
  * @private

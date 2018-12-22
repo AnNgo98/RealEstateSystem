@@ -67,17 +67,22 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Account</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Create date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+<<<<<<< HEAD:RealEstateSystem/target/classes/templates/Customer/IndexCustomer.html
+                                    <tr th:each ="p : ${lstcus}">
+                                        <td th:text="${p.customer_ID}"></td>
+                                        <td th:text="${p.fullname}"></td>
+                                        <td th:text="${p.email}"></td>
+                                        <td th:text="${p.createDate}"></td>
+                                    </tr>
+=======
+
                                 <!--@{-->
                                 <!--for (int i = 0; i < Model.Count; i++)-->
                                 <!--{-->
@@ -120,6 +125,7 @@
                                 <!--</tr>-->
                                 <!--}-->
                                 <!--}-->
+>>>>>>> f6828013774548e85ff7a8bbf17bb2a6f28c29af:RealEstateSystem/target/classes/templates/customers/IndexCustomer.html
                                 </tbody>
                             </table>
                         </div>

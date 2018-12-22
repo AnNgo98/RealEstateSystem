@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
     <!-- Google Fonts
         ============================================ -->
-    <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet"/>
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
@@ -35,15 +35,20 @@
     <link rel="stylesheet" href="/static/css/morrisjs/morris.css" th:href="@{/css/morrisjs/morris.css}"/>
     <!-- mCustomScrollbar CSS
         ============================================ -->
-    <link rel="stylesheet" href="/static/css/scrollbar/jquery.mCustomScrollbar.min.css" th:href="@{/css/scrollbar/jquery.mCustomScrollbar.min.css}"/>
+    <link rel="stylesheet" href="/static/css/scrollbar/jquery.mCustomScrollbar.min.css"
+          th:href="@{/css/scrollbar/jquery.mCustomScrollbar.min.css}"/>
     <!-- metisMenu CSS
         ============================================ -->
-    <link rel="stylesheet" href="/static/css/metisMenu/metisMenu.min.css" th:href="@{/css/metisMenu/metisMenu.min.css}"/>
-    <link rel="stylesheet" href="/static/css/metisMenu/metisMenu-vertical.css" th:href="@{/css/metisMenu/metisMenu-vertical.css}"/>
+    <link rel="stylesheet" href="/static/css/metisMenu/metisMenu.min.css"
+          th:href="@{/css/metisMenu/metisMenu.min.css}"/>
+    <link rel="stylesheet" href="/static/css/metisMenu/metisMenu-vertical.css"
+          th:href="@{/css/metisMenu/metisMenu-vertical.css}"/>
     <!-- calendar CSS
         ============================================ -->
-    <link rel="stylesheet" href="/static/css/calendar/fullcalendar.min.css" th:href="@{/css/calendar/fullcalendar.min.css}"/>
-    <link rel="stylesheet" href="/static/css/calendar/fullcalendar.print.min.css" th:href="@{/css/calendar/fullcalendar.print.min.css}"/>
+    <link rel="stylesheet" href="/static/css/calendar/fullcalendar.min.css"
+          th:href="@{/css/calendar/fullcalendar.min.css}"/>
+    <link rel="stylesheet" href="/static/css/calendar/fullcalendar.print.min.css"
+          th:href="@{/css/calendar/fullcalendar.print.min.css}"/>
     <!-- forms CSS
         ============================================ -->
     <link rel="stylesheet" href="/static/css/form/all-type-forms.css" th:href="@{/css/form/all-type-forms.css}"/>
@@ -64,38 +69,44 @@
             <h3>ADMIN LOGIN | REAL ESTATE</h3>
             <p>Have a nice day!</p>
         </div>
-        <span class="formError" th:with="notifyMessages=${session[T(com.res.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
-            <p class="formError" th:each="msg : ${notifyMessages}" th:text="${msg.text}"
-                th:class="${#strings.toLowerCase(msg.type)}">
-            </p>
-            <span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(T(com.res.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
-        </span>
+        <!-- /login?errors=true -->
+        <div class="formError" th:if="${#httpServletRequest.getParameter('errors') == 'true'}">
+            Login Failed!!!<br/>
+            <span th:if="${#session != null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+                  th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+            </span>
+        </div>
+        
         <div class="content-error">
             <div class="hpanel">
                 <div class="panel-body">
-                    <form method="post" id="loginForm" th:object="${loginForm}">
+                    <form name='f' th:action="@{/j_spring_security_check}" method='POST'>
                         <div class="form-group">
                             <label class="control-label" for="username">Username</label>
-                            <input type="text" placeholder="username" title="Please enter you username"  th:value="*{username}" name="username" id="username" class="form-control"/>
-                            <span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span>
+                            <input type="text" placeholder="username" title="Please enter you username" name="username"
+                                   id="username" class="form-control"/>
+                            <!--<span class="formError" th:if="${#fields.hasErrors('username')}">Invalid username</span>-->
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="password">Password</label>
-                            <input type="password" title="Please enter your password" placeholder="******" th:value="*{password}" name="password" id="password" class="form-control"/>
-                            <span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span>
+                            <input type="password" title="Please enter your password" placeholder="******"
+                                   name="password" id="password" class="form-control"/>
+                            <!--<span class="formError" th:if="${#fields.hasErrors('password')}">Invalid password</span>-->
                         </div>
                         <div class="checkbox">
                             <label class="pad-l10">
-                                <input type="checkbox"/> Remember me
+                                <input type="checkbox" name="remember-me"/> Remember me
                             </label>
                         </div>
-                        <button class="btn btn-success btn-block loginbtn">Login</button>
+                        <input name="submit" type="submit" value="Login" class="btn btn-success btn-block loginbtn"/>
                     </form>
                 </div>
             </div>
         </div>
         <div class="text-center login-footer">
-            <p>Copyright © 2018. All rights reserved. Design with <i class="fa fa-heart"></i> by <a href="https://www.facebook.com/thuydx.98" target="_blank">Thuy Dao Xuan</a></p>
+            <p>Copyright © 2018. All rights reserved. Design with <i class="fa fa-heart"></i> by <a
+                    href="https://www.facebook.com/thuydx.98" target="_blank">Thuy Dao Xuan</a></p>
         </div>
     </div>
 </div>
@@ -126,8 +137,10 @@
 <script src="/static/js/jquery.scrollUp.min.js" th:src="@{/js/jquery.scrollUp.min.js}"></script>
 <!-- mCustomScrollbar JS
     ============================================ -->
-<script src="/static/js/scrollbar/jquery.mCustomScrollbar.concat.min.js" th:src="@{/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
-<script src="/static/js/scrollbar/mCustomScrollbar-active.js" th:src="@{/js/scrollbar/mCustomScrollbar-active.js}"></script>
+<script src="/static/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"
+        th:src="@{/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script src="/static/js/scrollbar/mCustomScrollbar-active.js"
+        th:src="@{/js/scrollbar/mCustomScrollbar-active.js}"></script>
 <!-- metisMenu JS
     ============================================ -->
 <script src="/static/js/metisMenu/metisMenu.min.js" th:src="@{/js/metisMenu/metisMenu.min.js}"></script>

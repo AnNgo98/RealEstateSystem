@@ -540,7 +540,7 @@ if (!document.createElement('canvas').getContext) {
     }
 
     // Different scaling between normal text and VML text. This was found using
-    // trial and error to get the same size as non VML text.
+    // trial and errors to get the same size as non VML text.
     computedStyle.size *= 0.981;
 
     return computedStyle;
