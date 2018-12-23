@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <link href="/static/css/slideshow.css" rel="stylesheet" th:href="@{/css/slideshow.css}"/>
-    <link href="/static/css/notifications/Lobibox.min.css" rel="stylesheet" th:href="@{/css/notifications/Lobibox.min.css}"/>
-    <link href="/static/css/notifications/notifications.css" rel="stylesheet" th:href="@{/css/notifications/notifications.css}"/>
-
-
-    <script src="/static/js/notifications/notification-active.js" th:src="@{/js/notifications/notification-active.js}"></script>
-    <script src="/static/js/notifications/Lobibox.js" th:src="@{/js/notifications/Lobibox.js}"></script>
-    <script src="/static/js/slideshow.js" th:src="@{/js/slideshow.js}"></script>
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8"/>
+    <!-- forms CSS
+       ============================================ -->
+    <link rel="stylesheet" href="/static/css/form/all-type-forms.css" th:href="@{/css/form/all-type-forms.css}"/>
+    <!-- dropzone CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/dropzone/dropzone.css" th:href="@{/css/dropzone/dropzone.css}"/>
 </head>
 <body>
-<div class="single-pro-review-area mt-t-30 mg-b-15">
+<header th:replace="layout :: site-header"/>
+<div class="single-pro-review-area mt-t-30 mg-b-15 all-content-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
-                    <ul id="myTabedu1" class="tab-review-design">
-                        <li class="active"><a href="#description">Edit Customer</a></li>
+                    <ul id="myTabedu1" class="tab-review-design" style="padding-top: 2%">
+                        <li class="active"><a href="#description">Basic Information</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit">
                         <div class="product-tab-list tab-pane fade active in" id="description">
@@ -27,38 +25,69 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad">
-                                            @using (Html.BeginForm("SaveCustomer", "Customer", FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data", @class = "dropzone dropzone-custom needsclick add-professors dz-clickable", @id = "demo1-upload", @novalidate = "novalidate" }))
-                                            {
-                                            @Html.EditorFor(model => model.Customer_ID, new { htmlAttributes = new { @style = "display: none" } })
-                                            <div class="form-group">
-                                                <label class="control-label" for="fullname">Full Name:</label>
-                                                <input type="text" placeholder="fullname" title="Please enter fullname" required="" value="" name="fullname" id="fullname" class="form-control"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="idnumber">ID Number:</label>
-                                                <input type="text" placeholder="idnumber" title="Please enter idnumber" required="" value="" name="idnumber" id="idnumber" class="form-control"/>
-                                            </div>
+                                            <div class="row">
+                                                <form method="POST" th:object="${employee}"
+                                                      th:method="POST" novalidate="novalidate">
+                                                    <input type="hidden" th:field="*{employee_ID}"/>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="fullname">Fullname</label>
+                                                            <input type="text" th:field="*{fullname}"
+                                                                   placeholder="Fullname" title="Please enter fullname"
+                                                                   required="" value="" name="fullname" id="fullname"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="address">Address</label>
+                                                            <input type="text" th:field="*{address}"
+                                                                   placeholder="Address" title="Please enter address"
+                                                                   required="" value="" name="address" id="address"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="email">Email</label>
+                                                            <input type="text" th:field="*{email}" placeholder="Email"
+                                                                   title="Please enter email" required="" value=""
+                                                                   name="email" id="email" class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="idnumber">IDNumber</label>
+                                                            <input type="text" th:field="*{idNumber}"
+                                                                   placeholder="IDNumber" title="Please enter idnumber"
+                                                                   required="" value="" name="idnumber" id="idnumber"
+                                                                   class="form-control"/>
+                                                        </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label" for="phonenumber">Phonenumber :</label>
-                                                <input type="text" placeholder="phonenumber" title="Please enter phonenumber" required="" value="" name="phonenumber" id="phonenumber" class="form-control"/>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label"
+                                                                   for="phoneNumber">PhoneNumber</label>
+                                                            <input type="text" th:field="*{phoneNumber}"
+                                                                   placeholder="PhoneNumber"
+                                                                   title="Please enter phoneNumber" required="" value=""
+                                                                   name="phoneNumber" id="phoneNumber"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Username">Username</label>
+                                                            <input type="text" th:field="*{account.userName}"
+                                                                   placeholder="userName" title="Please enter userName"
+                                                                   required="" value="" name="Username" id="Username"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="payment-adress">
+                                                                <button type="submit" id="btnSubmit"
+                                                                        class="btn btn-primary waves-effect waves-light">Submit
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label" for="Email">Email :</label>
-                                                <input type="text" placeholder="Email" title="Please enter email" required="" value="" name="Email" id="Email" class="form-control"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label" for="Address">Address :</label>
-                                                <input type="text" placeholder="Address" title="Please enter address" required="" value="" name="Address" id="Address" class="form-control"/>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-custon-rounded-four btn-primary" data-toggle="modal">Save</button>
-                                                <button type="button" data-dismiss="modal" class="btn btn-custon-rounded-four btn-default">Cancel</button>
-                                            </div>
-                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -70,5 +99,33 @@
         </div>
     </div>
 </div>
+
+<footer th:replace="layout :: site-footer"/>
+<!-- maskedinput JS
+        ============================================ -->
+<script src="/static/js/jquery.maskedinput.min.js" th:src="@{/js/jquery.maskedinput.min.js}"></script>
+<script src="/static/js/masking-active.js" th:src="@{/js/masking-active.js}"></script>
+<!-- datepicker JS
+    ============================================ -->
+<script src="/static/js/datepicker/jquery-ui.min.js" th:src="@{/js/datepicker/jquery-ui.min.js}"></script>
+<script src="/static/js/datepicker/datepicker-active.js" th:src="@{/js/datepicker/datepicker-active.js}"></script>
+<!-- form validate JS
+    ============================================ -->
+<script src="/static/js/form-validation/jquery.form.min.js" th:src="@{/js/form-validation/jquery.form.min.js}"></script>
+<script src="/static/js/form-validation/jquery.validate.min.js"
+        th:src="@{/js/form-validation/jquery.validate.min.js}"></script>
+<script src="/static/js/form-validation/form-active.js" th:src="@{/js/form-validation/form-active.js}"></script>
+<!-- tab JS
+    ============================================ -->
+<script src="/static/js/tab.js" th:src="@{/js/tab.js}"></script>
+
+<script>
+    var type = '@ViewBag.AddCustomerOK';
+    if (type !== null &amp;&amp; type !== "") {
+        Lobibox.notify('success', {
+            msg: 'Add customer successfull'
+        });
+    }
+</script>
 </body>
 </html>

@@ -19,14 +19,14 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <select id="typeOfSearch" name="typeOfSearch" class="form-control" style="width: 100%">
-                                                <option value="1">Select by Name</option>
-                                                <option value="2">Select by Account</option>
-                                                <option value="3">Select by Email</option>
+                                                <option value="1">Search by Name</option>
+                                                <option value="2">Search by Account</option>
+                                                <option value="3">Search by Email</option>
                                             </select>
                                         </div>
                                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                             <div role="search" class="sr-input-func" style="width: 100%">
-                                                <input type="text" name="value" placeholder="Search..." value="@ViewBag.Value" class="search-int form-control" style="width: 100%"/>
+                                                <input type="text" name="value" placeholder="Search..." value="" class="search-int form-control" style="width: 100%"/>
                                             </div>
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                 <div class="sparkline8-list">
                     <div class="sparkline8-hd">
                         <div class="main-sparkline8-hd">
-                            <h1>New Posts Table</h1>
+                            <h1>All employees</h1>
                         </div>
                     </div>
                     <div class="sparkline8-graph">
@@ -68,57 +68,24 @@
                                 <thead>
                                 <tr>
                                     <th>FullName</th>
-                                    <th>UserName</th>
-                                    <th>IDNumber</th>
-                                    <th>PhoneNumber</th>
-                                    <th>Email</th>
                                     <th>Address</th>
+                                    <th>Email</th>
+                                    <th>PhoneNumber</th>
+                                    <th>IDNumber</th>
+                                    <th>Username</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--@{-->
-                                <!--for (int i = 0; i < Model.Count; i++)-->
-                                <!--{-->
-                                <!--<tr>-->
-                                <!--<td>@(i + 1)</td>-->
-                                <!--<td>@Model[i].Customer_ID</td>-->
-                                <!--<td>@Model[i].LastName @Model[i].Firstname</td>-->
-                                <!--<td>@Model[i].Email</td>-->
-                                <!--<td>@(Model[i].PhoneNumbers.FirstOrDefault().PhoneNumber1)</td>-->
-                                <!--<td>@Model[i].Account.UserName</td>-->
-                                <!--<td>-->
-                                <!--@{-->
-                                <!--if (Model[i].Blocks.LastOrDefault() != null && (Model[i].Blocks.LastOrDefault().UnBlockDate == null || Model[i].Blocks.LastOrDefault().UnBlockDate > DateTime.Now))-->
-                                <!--{-->
-                                <!--<span class="text-danger">Blocked</span>-->
-                                <!--}-->
-                                <!--else-->
-                                <!--{-->
-                                <!--<span class="text-success">Active</span>-->
-                                <!--}-->
-                                <!--}-->
-                                <!--</td>-->
-                                <!--<td>-->
-                                <!--<div class="modal-area-button">-->
-                                <!--<button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnedit" data-id="@Model[i].Customer_ID" data-toggle="modal" data-target="#PrimaryModalalert">Edit</button>-->
-
-                                <!--@{-->
-                                <!--if (Model[i].Blocks.LastOrDefault() != null && (Model[i].Blocks.LastOrDefault().UnBlockDate == null || Model[i].Blocks.LastOrDefault().UnBlockDate > DateTime.Now))-->
-                                <!--{-->
-                                <!--<button type="button" class="btn btn-custon-rounded-three btn-success btn-xs btnUnBlock" data-id="@Model[i].Customer_ID">Unblock</button>-->
-
-                                <!--}-->
-                                <!--else-->
-                                <!--{-->
-                                <!--<button type="button" class="btn btn-custon-rounded-three btn-danger btn-xs btnblock" data-id="@Model[i].Customer_ID">Block</button>-->
-                                <!--}-->
-                                <!--}-->
-                                <!--</div>-->
-                                <!--</td>-->
-                                <!--</tr>-->
-                                <!--}-->
-                                <!--}-->
+                                <tr th:each="p : ${lstemp}">
+                                    <td th:text="${p.fullname}"></td>
+                                    <td th:text="${p.address}"></td>
+                                    <td th:text="${p.email}"></td>
+                                    <td th:text="${p.phoneNumber}"></td>
+                                    <td th:text="${p.idNumber}"></td>
+                                    <td th:text="${p.account.userName}"></td>
+                                    <td><a th:href="@{'/employee/edit/'+${p.employee_ID}}">Edit</a></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

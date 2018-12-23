@@ -19,9 +19,9 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                         <select id="typeOfSearch" name="typeOfSearch" class="form-control" style="width: 100%">
-                                            <option value="1">Select by Name</option>
-                                            <option value="2">Select by Account</option>
-                                            <option value="3">Select by Email</option>
+                                            <option value="1">Search by Name</option>
+                                            <option value="2">Search by Account</option>
+                                            <option value="3">Search by Email</option>
                                         </select>
                                     </div>
                                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -67,9 +67,9 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Address</th>
                                     <th>Create date</th>
                                     <th>Username</th>
                                     <th>Action</th>
@@ -77,59 +77,15 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each ="p : ${lstCus}">
-                                    <td th:text="${p.customer_ID}"></td>
                                     <td th:text="${p.fullname}"></td>
                                     <td th:text="${p.email}"></td>
+                                    <td th:text="${p.address}"></td>
                                     <td th:text="${p.createDate}"></td>
                                     <td th:text="${p.account.userName}"></td>
-                                    <td>
-                                        <button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnedit" data-id="@Model[i].Customer_ID" data-toggle="modal" data-target="#PrimaryModalalert">Edit</button>
-                                    </td>
+                                    <td><a th:href="@{'/customer/edit/'+${p.customer_ID}}">Edit</a></td>
                                 </tr>
                                 </tbody>
                             </table>
-                                <!--@{-->
-                                <!--for (int i = 0; i < Model.Count; i++)-->
-                                <!--{-->
-                                <!--<tr>-->
-                                    <!--<td>@(i + 1)</td>-->
-                                    <!--<td>@Model[i].Customer_ID</td>-->
-                                    <!--<td>@Model[i].LastName @Model[i].Firstname</td>-->
-                                    <!--<td>@Model[i].Email</td>-->
-                                    <!--<td>@(Model[i].PhoneNumbers.FirstOrDefault().PhoneNumber1)</td>-->
-                                    <!--<td>@Model[i].Account.UserName</td>-->
-                                    <!--<td>-->
-                                        <!--@{-->
-                                        <!--if (Model[i].Blocks.LastOrDefault() != null && (Model[i].Blocks.LastOrDefault().UnBlockDate == null || Model[i].Blocks.LastOrDefault().UnBlockDate > DateTime.Now))-->
-                                        <!--{-->
-                                        <!--<span class="text-danger">Blocked</span>-->
-                                        <!--}-->
-                                        <!--else-->
-                                        <!--{-->
-                                        <!--<span class="text-success">Active</span>-->
-                                        <!--}-->
-                                        <!--}-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<div class="modal-area-button">-->
-                                            <!--<button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnedit" data-id="@Model[i].Customer_ID" data-toggle="modal" data-target="#PrimaryModalalert">Edit</button>-->
-
-                                            <!--@{-->
-                                            <!--if (Model[i].Blocks.LastOrDefault() != null && (Model[i].Blocks.LastOrDefault().UnBlockDate == null || Model[i].Blocks.LastOrDefault().UnBlockDate > DateTime.Now))-->
-                                            <!--{-->
-                                            <!--<button type="button" class="btn btn-custon-rounded-three btn-success btn-xs btnUnBlock" data-id="@Model[i].Customer_ID">Unblock</button>-->
-
-                                            <!--}-->
-                                            <!--else-->
-                                            <!--{-->
-                                            <!--<button type="button" class="btn btn-custon-rounded-three btn-danger btn-xs btnblock" data-id="@Model[i].Customer_ID">Block</button>-->
-                                            <!--}-->
-                                            <!--}-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--}-->
-                                <!--}-->
                         </div>
                     </div>
                 </div>

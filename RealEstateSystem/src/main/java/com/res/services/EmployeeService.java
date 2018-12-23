@@ -1,5 +1,6 @@
 package com.res.services;
 
+import com.res.models.Customer;
 import com.res.models.Employee;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,4 +16,5 @@ public interface EmployeeService {
 
 //    UserDetails loadUserByUsername(String username);
     List<String> getRoleNames(int account_ID);
+    Employee getCusByID(int id);
 }

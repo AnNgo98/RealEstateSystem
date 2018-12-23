@@ -1,5 +1,7 @@
 package com.res.models;
 
+import com.res.utils.EncrytedPasswordUtils;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,9 +21,9 @@ public class Account {
     private String userName;
 
     @Column(name = "Password", length = 128, nullable = false)
-    private String password;
+    private String password ;
 
-    @Column(name = "Enabled", length = 1, nullable = false)
+    @Column(name = "Enabled", length = 1, nullable = true)
     private boolean enabled;
 
     @OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -52,7 +54,7 @@ public class Account {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncrytedPasswordUtils.encrytePassword(password);
     }
 
     public boolean isEnabled() {

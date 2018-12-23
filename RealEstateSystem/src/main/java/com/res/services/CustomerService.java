@@ -8,5 +8,6 @@ public interface CustomerService {
     List<Customer> findAll();
     List<Customer> findByName(String name);
     List<Customer> findByUsername(String username);
-    boolean createOrUpdate(Customer customer);
+    Customer createOrUpdate(Customer customer);
+    Customer getCusByID(int id);
 }

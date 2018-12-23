@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
-                    <ul id="myTabedu1" class="tab-review-design">
+                    <ul id="myTabedu1" class="tab-review-design" style="padding-top: 2%">
                         <li class="active"><a href="#description">Basic Information</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit">
@@ -25,66 +25,62 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad">
-                                            <!--@using (Html.BeginForm("AddCustomer", "customers", FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data", @class = "dropzone dropzone-custom needsclick add-professors dz-clickable", @id = "demo1-upload", @novalidate = "novalidate" }))-->
-                                            <!--{-->
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="firstname">Firstname</label>
-                                                        <input type="text" placeholder="Firstname" title="Please enter firstname" required="" value="" name="firstname" id="firstname" class="form-control"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="lastname">Lastname</label>
-                                                        <input type="text" placeholder="Lastname" title="Please enter lastname" required="" value="" name="lastname" id="lastname" class="form-control"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="phoneNumber">PhoneNumber</label>
-                                                        <input type="text" placeholder="PhoneNumber" title="Please enter phoneNumber" required="" value="" name="phoneNumber" id="phoneNumber" class="form-control"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="email">Email</label>
-                                                        <input type="text" placeholder="Email" title="Please enter email" required="" value="" name="email" id="email" class="form-control"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="file">Image</label>
-                                                        <input type="file" placeholder="image" title="Please enter image" required="" value="" name="image" id="file" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="Address">Address</label>
-                                                                <input type="text" placeholder="Address" title="Please enter Address" required="" value="" name="Address" id="Address" class="form-control"/>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="UserName">UserName</label>
-                                                                <input type="text" placeholder="UserName" title="Please enter userName" required="" value="" name="UserName" id="UserName" class="form-control"/>
-
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="password">Password</label>
-                                                                <input type="password" placeholder="Password" title="Please enter password" required="" value="" name="password" id="password" class="form-control"/>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label" for="ConfirmPassword">ConfirmPassword</label>
-                                                                    <input type="password" placeholder="ConfirmPassword" title="Please enter ConfirmPassword" required="" value="" name="ConfirmPassword" id="ConfirmPassword" class="form-control"/>
-                                                                </div>
-                                                            </div>
+                                                <form th:action="@{/customer}" th:object="${customer}"
+                                                      th:method="POST" novalidate="novalidate">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="fullname">FullName</label>
+                                                            <input type="text" th:field="*{fullname}"
+                                                                   placeholder="Fullname" title="Please enter fullname"
+                                                                   required="" value="" name="fullname" id="fullname"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="address">Address</label>
+                                                            <input type="text" th:field="*{address}"
+                                                                   placeholder="Address" title="Please enter address"
+                                                                   name="address" id="address" class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="email">Email</label>
+                                                            <input type="text" th:field="*{email}" placeholder="Email"
+                                                                   title="Please enter email" required="" value=""
+                                                                   name="email" id="email" class="form-control"/>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Username">Username</label>
+                                                            <input type="text" th:field="*{account.userName}"
+                                                                   placeholder="UserName" title="Please enter userName"
+                                                                   required="" value="" name="Username" id="Username"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="Password">Password</label>
+                                                            <input type="text" th:field="*{account.password}"
+                                                                   placeholder="Password" title="Please enter password"
+                                                                   name="Password" id="Password" class="form-control"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="createDate">Date</label>
+                                                            <input type="text" th:field="*{createDate}"
+                                                                   placeholder="23/12/2018" title="Please enter date"
+                                                                   required="" value="" name="createDate"
+                                                                   id="createDate" class="form-control"/>
+                                                        </div>
+                                                    </div>
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="payment-adress">
                                                             <button type="submit" id="btnSubmit"
-                                                                    class="btn btn-primary waves-effect waves-light">
-                                                                Submit
+                                                                    class="btn btn-primary waves-effect waves-light">Submit
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--}-->
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

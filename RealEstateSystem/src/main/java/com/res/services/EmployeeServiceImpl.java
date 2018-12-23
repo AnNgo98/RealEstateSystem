@@ -1,6 +1,7 @@
 package com.res.services;
 
 import com.res.models.AccountRole;
+import com.res.models.Customer;
 import com.res.models.Employee;
 import com.res.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         } catch (Exception e) {
             return false;
         }
+    }
+    @Override
+    public Employee getCusByID(int id) {
+        return employeeRepo.findOne(id);
     }
 
 //    @Override

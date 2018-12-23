@@ -1,5 +1,7 @@
 package com.res.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,20 +15,21 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customer_ID;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100,name = "fullname")
     private String fullname;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100,name = "email")
     private String email;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = 200,name = "address")
     private String address;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Account account;
 
-    @Column(nullable = false)
-    private Date createDate = new Date();
+    @Column(nullable = false,name = "createDate")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date createDate ;
 
     @OneToMany(mappedBy = "author")
     private Set<Post> posts = new HashSet<>();

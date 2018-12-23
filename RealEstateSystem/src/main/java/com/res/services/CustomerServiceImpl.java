@@ -29,14 +29,22 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> findByUsername(String username) {
         return (List<Customer>) this.customerRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username));
     }
-
     @Override
-    public boolean createOrUpdate(Customer customer) {
-        try {
-            this.customerRepo.save(customer);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public Customer createOrUpdate(Customer customer)
+    {
+     return this.customerRepo.save(customer);
     }
+    @Override
+    public Customer getCusByID(int id) {
+        return customerRepo.findOne(id);
+    }
+//    @Override
+//    public boolean createOrUpdate(Customer customer) {
+//        try {
+//            this.customerRepo.save(customer);
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
 }
