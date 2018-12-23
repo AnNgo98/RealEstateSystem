@@ -40,30 +40,24 @@ public class PostController {
     public String index(Model model, int typeOfPost, int typeOfRE, String dateInput) {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date;
+
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(dateInput);
         } catch (ParseException e) {
             return "/404";
         }
+
         List<Post> lstPost = null;
-        if (typeOfPost == 0 && typeOfRE == 0)
-        {
+
+        if (typeOfPost == 0 && typeOfRE == 0) {
             lstPost = this.postService.findAll().stream().filter(p -> Objects.equals(formatter.format(p.getPostTime()), formatter.format(date))).collect(Collectors.toList());
-        }
-        else
-        {
-            if (typeOfPost == 0)
-            {
+        } else {
+            if (typeOfPost == 0) {
                 lstPost = this.postService.findAll().stream().filter(p -> Objects.equals(p.getRealEstaleType().getRealestate_ID(), typeOfRE) && Objects.equals(formatter.format(p.getPostTime()), formatter.format(date))).collect(Collectors.toList());
-            }
-            else
-            {
-                if(typeOfRE == 0)
-                {
-                    this.postService.findAll().stream().filter(p -> Objects.equals(p.getPostType().getType_ID(), typeOfPost) && Objects.equals(formatter.format(p.getPostTime()), formatter.format(date))).collect(Collectors.toList());
-                }
-                else
-                {
+            } else {
+                if (typeOfRE == 0) {
+                    lstPost = this.postService.findAll().stream().filter(p -> Objects.equals(p.getPostType().getType_ID(), typeOfPost) && Objects.equals(formatter.format(p.getPostTime()), formatter.format(date))).collect(Collectors.toList());
+                } else {
                     lstPost = this.postService.findAll().stream().filter(p -> Objects.equals(p.getPostType().getType_ID(), typeOfPost) && Objects.equals(p.getRealEstaleType().getRealestate_ID(), typeOfRE) && Objects.equals(formatter.format(p.getPostTime()), formatter.format(date))).collect(Collectors.toList());
                 }
             }
