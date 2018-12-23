@@ -24,8 +24,8 @@
 <div class="error-pagewrap">
     <div class="error-page-int">
         <div class="content-error">
-            <h1>ERROR <span class="counter"> 403</span></h1>
-            <p th:if="${message != null}" th:utext="${message}" style="color: red;"></p>
+            <h1>Server Error <span class="counter"> 500</span></h1>
+            <p>The server encountered something unexpected that didn't allow it to complete the request. We apologize.</p>
             <a href="index" th:href="@{/}">Dashboard</a>
         </div>
         <div class="text-center login-footer">
@@ -39,7 +39,8 @@
 <script src="../static/js/vendor/jquery-1.12.4.min.js" th:src="@{/js/vendor/jquery-1.12.4.min.js}"></script>
 <!-- counterup JS
     ============================================ -->
-<script src="../static/js/counterup/jquery.counterup.min.js" th:src="@{/js/counterup/jquery.counterup.min.js}"></script>
+<script src="../static/js/counterup/jquery.counterup.min.js"
+        th:src="@{/js/counterup/jquery.counterup.min.js}"></script>
 <script src="../static/js/counterup/waypoints.min.js" th:src="@{/js/counterup/waypoints.min.js}"></script>
 <script src="../static/js/counterup/counterup-active.js" th:src="@{/js/counterup/counterup-active.js}"></script>
 

@@ -74,12 +74,24 @@ public class HomeController {
 
             model.addAttribute("userInfo", userInfo);
 
-            String message = "Hi " + principal.getName() //
-                    + "<br> You do not have permission to access this page!";
+            String message = "Sorry " + principal.getName() //
+                    + "<br>  but the page you are looking for can't have permission for you. " +
+                    "Try checking the URL for the error, then hit the refresh button on your " +
+                    "browser or try found something else in our app.";
             model.addAttribute("message", message);
 
         }
 
         return "errors/403Page";
+    }
+
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    public String notFound(Model model, Principal principal) {
+        return "errors/404Page";
+    }
+
+    @RequestMapping(value = "/500", method = RequestMethod.GET)
+    public String internal(Model model, Principal principal) {
+        return "errors/500Page";
     }
 }
