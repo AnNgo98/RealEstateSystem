@@ -10,19 +10,19 @@ public class PostDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int details_ID;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int bedroom;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int bathroom;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int floor;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private boolean alley;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)    //
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)    //
     private Direction direction;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -82,4 +82,12 @@ public class PostDetails {
     }
 
     public PostDetails() { }
+
+    public PostDetails(int bedroom, int bathroom, int floor, boolean alley, Direction direction) {
+        this.bedroom = bedroom;
+        this.bathroom = bathroom;
+        this.floor = floor;
+        this.alley = alley;
+        this.direction = direction;
+    }
 }

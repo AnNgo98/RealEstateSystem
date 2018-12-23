@@ -34,7 +34,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> findAll() {
-        return this.postRepo.findAll();
+        return this.postRepo.findAll().stream().filter(p -> p.getStatus().getStatus_ID() != 3).collect(Collectors.toList());
     }
 
     @Override

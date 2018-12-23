@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: site-head">
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}"/>
     <link href="/static/css/buttons.css" rel="stylesheet" th:href="@{/css/buttons.css}"/>
     <link href="/static/css/slideshow.css" rel="stylesheet" th:href="@{/css/slideshow.css}"/>
     <link href="/static/css/form/all-type-forms.css" rel="stylesheet" th:href="@{/css/form/all-type-forms.css}"/>
     <!--<script-->
-            <!--src="https://code.jquery.com/jquery-3.3.1.js"-->
-            <!--integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="-->
-            <!--crossorigin="anonymous"></script>-->
+    <!--src="https://code.jquery.com/jquery-3.3.1.js"-->
+    <!--integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="-->
+    <!--crossorigin="anonymous"></script>-->
 </head>
 <body>
-<header th:replace="layout :: site-header" />
+<header th:replace="layout :: site-header"/>
 <div class="breadcome-area all-content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -24,7 +24,8 @@
                                 <form action="">
                                     <div class="row">
                                         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-3" style="padding-bottom: 10px">
-                                            <select id="typeOfPost" name="typeOfPost" class="form-control" style="width: 100%">
+                                            <select id="typeOfPost" name="typeOfPost" class="form-control"
+                                                    style="width: 100%">
                                                 <option value="0">Chọn tất cả</option>
                                                 <option value="1">Cần Bán</option>
                                                 <option value="11">Cần Mua</option>
@@ -33,7 +34,8 @@
                                             </select>
                                         </div>
                                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-3">
-                                            <select id="typeOfRE" name="typeOfRE" class="form-control" style="width: 100%">
+                                            <select id="typeOfRE" name="typeOfRE" class="form-control"
+                                                    style="width: 100%">
                                                 <option value="0">Chọn tất cả</option>
                                                 <option value="1">Nhà</option>
                                                 <option value="2">Đất</option>
@@ -44,11 +46,15 @@
                                             </select>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-4">
-                                            <input name="date" id="finish" type="text" class="form-control" value="" style="width:100%"/>
+                                            <input name="date" id="finish" type="text" class="form-control" value=""
+                                                   style="width:100%"/>
                                         </div>
                                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
                                             <div role="search" class="sr-input-func" style="width: 100%">
-                                                <button type="submit" class="btn btn-custon-rounded-three btn-primary btn-md" style="width: 100%">Search</button>
+                                                <button type="submit"
+                                                        class="btn btn-custon-rounded-three btn-primary btn-md"
+                                                        style="width: 100%">Search
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +104,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each ="p : ${lstPost}">
+                                <span th:each="p : ${lstPost}">
+                                <tr>
                                     <td th:text="${p.post_ID}"></td>
                                     <td th:text="${p.title}"></td>
                                     <td th:text="${p.author.fullname}"></td>
@@ -106,51 +113,120 @@
                                     <td th:text="${p.postType.type_Tittle}"></td>
                                     <td th:text="${p.price}"></td>
                                     <td>
-                                        <button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnedit" th:data-id="${p.post_ID}" data-toggle="modal" data-target="#PrimaryModalalert">Details</button>
-                                        <span th:if="${p.status == 3}"
-                                              th:utext="Blocked">
-                                        </span>
-                                        <span th:if="${p.status != 3}">
-                                            <button type="button" class="btn btn-custon-rounded-three btn-danger btn-xs btnblock" data-id="@Model[i].Post_ID">Block</button>
-                                        </span>
+                                        <button type="button"
+                                                class="btn btn-custon-rounded-three btn-primary btn-xs btnedit"
+                                                data-toggle="modal"
+                                                th:attr="data-target='#postModel'+${p.post_ID}">Details</button>
+                                        <button type="button"
+                                                class="btn btn-custon-rounded-three btn-danger btn-xs btnblock"
+                                                th:attr="data-id=${p.post_ID}">Block
+                                        </button>
                                     </td>
                                 </tr>
-                                <!--@{-->
-                                <!--for (int i = 0; i < Model.Count; i++)-->
-                                <!--{-->
-                                <!--<tr>-->
-                                <!--<td>@Model[i].Post_ID</td>-->
-                                <!--<td>@Model[i].Tittle</td>-->
-                                <!--@if (Model[i].customers != null)-->
-                                <!--{-->
-                                <!--<td>@Model[i].customers.LastName @Model[i].customers.Firstname</td>-->
-                                <!--}-->
-                                <!--else-->
-                                <!--{-->
-                                <!--<td>@Model[i].employees.FullName</td>-->
-                                <!--}-->
-                                <!--<td>@Model[i].PostTime</td>-->
-                                <!--<td>@Model[i].Type1.Name @Model[i].RealEstateType.Name</td>-->
-                                <!--<td>@String.Format("{0:0,0 VND}", Model[i].Price)</td>-->
 
-                                <!--<td>-->
-                                <!--<div class="modal-area-button">-->
-                                <!--<button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnSubmit" data-id="@Model[i].Post_ID" data-toggle="modal" data-target="#PrimaryModalalert">Details</button>-->
-                                <!--@if (Model[i].Post_Status.LastOrDefault().Status.Status_ID != 4)-->
-                                <!--{-->
-                                <!--<button type="button" class="btn btn-custon-rounded-three btn-danger btn-xs btnblock" data-id="@Model[i].Post_ID">Block</button>-->
-                                <!--}-->
-                                <!--else-->
-                                <!--{-->
-                                <!--<span class="text-success" style="padding-left: 5px">Blocked</span>-->
-                                <!--}-->
-                                <!--</div>-->
-                                <!--</td>-->
-                                <!--</tr>-->
-                                <!--}-->
-                                <!--}-->
+                                </span>
                                 </tbody>
                             </table>
+                            <span th:each="p : ${lstPost}">
+                                    <div th:attr="id='postModel'+${p.post_ID}"
+                                         class="PrimaryModalalert modal modal-edu-general default-popup-PrimaryModal fade"
+                                         role="dialog">
+                                        <div class="modal-dialog">
+                                            <div id="modal-content" class="modal-content">
+                                                <div class="modal-close-area modal-close-df">
+                                                    <a class="close" data-dismiss="modal" href="#"><i
+                                                            class="fa fa-close"></i></a>
+                                                </div>
+                                                <!--<p th:text="${p.post_ID}">post_id</p>-->
+                                                <!--<div class="slideshow-container">-->
+
+                                                        <!--<div class="mySlides1">-->
+                                                            <!--<img src="../static/img_posts/1.1.jpg"-->
+                                                                 <!--th:src="@{/img_posts/1.1.jpg}" alt=""/>-->
+                                                            <!--&lt;!&ndash;<span th:each="img : ${p.postImages}">&ndash;&gt;-->
+                                                            <!--&lt;!&ndash;<img src="../static/img_posts/1.1.jpg"&ndash;&gt;-->
+                                                                 <!--&lt;!&ndash;th:src="@{/img_posts/1.1.jpg}" alt=""/>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                                        <!--</div>-->
+                                                    <!--<div class="mySlides1">-->
+                                                            <!--<img src="../static/img_posts/1.1.jpg"-->
+                                                                 <!--th:src="@{/img_posts/1.2.jpg}" alt=""/>-->
+                                                        <!--</div>-->
+
+                                                    <!--<a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>-->
+                                                    <!--<a class="next" onclick="plusSlides(1, 0)">&#10095;</a>-->
+                                                <!--</div>-->
+                                                <div class="sparkline8-list">
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Post ID:</td>
+                                                            <td th:text="${p.post_ID}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tittle:</td>
+                                                            <td th:text="${p.title}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Poster:</td>
+                                                            <td th:text="${p.author.fullname}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Post Time:</td>
+                                                            <td th:text="${p.postTime}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Price:</td>
+                                                            <td th:text="${p.price}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Description:</td>
+                                                            <td th:text="${p.description}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Location:</td>
+                                                            <td th:text="${p.location}">post_id</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <br/><br/>
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <span th:if="${p.details != null}">
+                                                            <tr>
+                                                            <td>Bedroom: </td>
+                                                            <td th:text="${p.details.bedroom}"></td>
+                                                            <td>Bathroom: </td>
+                                                            <td th:text="${p.details.bathroom}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Floor: </td>
+                                                            <td th:text="${p.details.floor}"></td>
+                                                            <td>Alley: </td>
+                                                            <td th:text="${p.details.alley}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Direction: </td>
+                                                            <td th:text="${p.details.direction.direction_Title}"></td>
+                                                            </tr>
+                                                        </span>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" id="btnBlock"  th:attr="data-id=${p.post_ID}"
+                                                            class="btn btn-custon-rounded-four btn-danger btnblock"
+                                                            data-toggle="modal">Block
+                                                    </button>
+                                                    <button type="button" data-dismiss="modal"
+                                                            class="btn btn-custon-rounded-four btn-default">Cancel
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -158,45 +234,38 @@
         </div>
     </div>
 </div>
-<!-- Static Table End -->
-<!-- Details Post -->
-<div id="PrimaryModalalert" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
-    <div class="modal-dialog">
-        <div id="modal-content" class="modal-content"></div>
-    </div>
-</div>
 
-<footer th:replace="layout :: site-footer" />
-<script>
-    var typeOfPost = '@ViewBag.TypeOfPost';
+<footer th:replace="layout :: site-footer"/>
+<script type="text/javascript" th:inline="javascript">
+    var typeOfPost = '';
     $(function () {
-        if (typeOfPost !== null &amp;&amp; typeOfPost !== "") {
+        if (typeOfPost !== "") {
             $("#typeOfPost").val(typeOfPost);
         }
     });
 
-    var typeOfRE = '@ViewBag.TypeOfRE';
+    var typeOfRE = '';
     $(function () {
-        if (typeOfRE !== null &amp;&amp; typeOfRE !== "") {
+        if (typeOfRE !== "") {
             $("#typeOfRE").val(typeOfRE);
         }
     });
 
 
-    var TeamDetailPostBackURL = '/Censor/Post/Details';
+    var details = '/Censor/Post/Details';
     $(function () {
         $(".btnSubmit").click(function () {
             var $buttonClicked = $(this);
             var id = $buttonClicked.attr('data-id');
             $.ajax({
                 type: "GET",
-                url: TeamDetailPostBackURL,
+                url: details,
                 contentType: "application/html; charset=utf-8",
-                data: { "post_ID": id, "type": "all" },
+                data: {"post_ID": id, "type": "all"},
                 datatype: "html",
                 success: function (data) {
                     $('#modal-content').html(data);
-                    $('#PrimaryModalalert').modal('show');
+                    $('.PrimaryModalalert').modal('show');
                 },
                 error: function () {
                     alert("Error: Get details of this Post failed. Please try again!");
@@ -205,7 +274,7 @@
         });
     });
 
-    var blockURL = '/Censor/Post/BlockPost';
+    var blockURL = '/posts/block';
     $(document).on('click', '.btnblock', function () {
         var $buttonClicked = $(this);
         if (confirm("Block this Customer ?")) {
@@ -214,10 +283,10 @@
                 type: "GET",
                 url: blockURL,
                 contentType: "application/html; charset=utf-8",
-                data: { "post_ID": id },
+                data: {"post_id": id},
                 datatype: "html",
                 success: function (data) {
-                    if (data == "1") {
+                    if (data == 1) {
                         $('#PrimaryModalalert1').modal('hide');
                         $("#newPostTable").load(location.href + " #newPostTable>*", "");
                         Lobibox.notify('success', {
