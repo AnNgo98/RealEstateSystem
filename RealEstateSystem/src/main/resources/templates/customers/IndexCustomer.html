@@ -15,22 +15,18 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <div class="breadcome-heading">
-                                <form action="#">
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                        <select id="typeOfSearch" name="typeOfSearch" class="form-control" style="width: 100%">
-                                            <option value="1">Search by Name</option>
-                                            <option value="2">Search by Account</option>
-                                            <option value="3">Search by Email</option>
-                                        </select>
-                                    </div>
                                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                        <div role="search" class="sr-input-func" style="width: 100%">
-                                            <input type="text" name="value" placeholder="Search..." value="" class="search-int form-control" style="width: 100%"/>
-                                        </div>
+                                        <form class="form-inline pull-right"
+                                              th:action="@{/customer/search}" method="GET" style="padding-right: 38%">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="name"
+                                                       placeholder="Search by name"/>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
                                     </div>
                                 </div>
-                                </form>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -76,14 +72,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each ="p : ${lstCus}">
-                                    <td th:text="${p.fullname}"></td>
-                                    <td th:text="${p.email}"></td>
-                                    <td th:text="${p.address}"></td>
-                                    <td th:text="${p.createDate}"></td>
-                                    <td th:text="${p.account.userName}"></td>
-                                    <td><a th:href="@{'/customer/edit/'+${p.customer_ID}}">Edit</a></td>
-                                </tr>
+                                    <tr th:each ="p : ${lstCus}">
+                                        <td th:text="${p.fullname}"></td>
+                                        <td th:text="${p.email}"></td>
+                                        <td th:text="${p.address}"></td>
+                                        <td th:text="${p.createDate}"></td>
+                                        <td th:text="${p.account.userName}"></td>
+                                        <td><a th:href="@{'/customer/edit/'+${p.customer_ID}}">Edit</a></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -106,107 +102,107 @@
     </div>
 </div>
 <footer th:replace="layout :: site-footer" />
-<script>
-    var type = '@ViewBag.SaveOK';
-    if (type !== null &amp;&amp; type !== "") {
-        Lobibox.notify('success', {
-            msg: 'Edit customer successfull'
-        });
-    }
+<!--<script>-->
+    <!--var type = '@ViewBag.SaveOK';-->
+    <!--if (type !== null &amp;&amp; type !== "") {-->
+        <!--Lobibox.notify('success', {-->
+            <!--msg: 'Edit customer successfull'-->
+        <!--});-->
+    <!--}-->
 
-    var typeOfSearch = '@ViewBag.TypeOfSearch';
-    $(function () {
-        if (typeOfSearch !== null &amp;&amp; typeOfSearch !== "") {
-            $("#typeOfSearch").val(typeOfSearch);
-        }
-    });
+    <!--var typeOfSearch = '@ViewBag.TypeOfSearch';-->
+    <!--$(function () {-->
+        <!--if (typeOfSearch !== null &amp;&amp; typeOfSearch !== "") {-->
+            <!--$("#typeOfSearch").val(typeOfSearch);-->
+        <!--}-->
+    <!--});-->
 
 
-    var editURL = '/Censor/Customer/EditPartialView';
-    $(document).on('click', '.btnedit', function () {
-        var $buttonClicked = $(this);
-        var id = $buttonClicked.attr('data-id');
-        $.ajax({
-            type: "GET",
-            url: editURL,
-            contentType: "application/html; charset=utf-8",
-            data: { "customer_id": id },
-            datatype: "html",
-            success: function (data) {
-                $('#modal-content').html(data);
-                $('#PrimaryModalalert').modal('show');
-            },
-            error: function () {
-                alert("Error: Get details of this Post failed. Please try again!");
-            }
-        });
-    });
+    <!--var editURL = '/Censor/Customer/EditPartialView';-->
+    <!--$(document).on('click', '.btnedit', function () {-->
+        <!--var $buttonClicked = $(this);-->
+        <!--var id = $buttonClicked.attr('data-id');-->
+        <!--$.ajax({-->
+            <!--type: "GET",-->
+            <!--url: editURL,-->
+            <!--contentType: "application/html; charset=utf-8",-->
+            <!--data: { "customer_id": id },-->
+            <!--datatype: "html",-->
+            <!--success: function (data) {-->
+                <!--$('#modal-content').html(data);-->
+                <!--$('#PrimaryModalalert').modal('show');-->
+            <!--},-->
+            <!--error: function () {-->
+                <!--alert("Error: Get details of this Post failed. Please try again!");-->
+            <!--}-->
+        <!--});-->
+    <!--});-->
 
-    var blockURL = '/Censor/Customer/BlockCustomer';
-    $(document).on('click', '.btnblock', function () {
-        var $buttonClicked = $(this);
-        if (confirm("Block this Customer ?")) {
-            var id = $buttonClicked.attr('data-id');
-            $.ajax({
-                type: "GET",
-                url: blockURL,
-                contentType: "application/html; charset=utf-8",
-                data: { "customer_id": id },
-                datatype: "html",
-                success: function (data) {
-                    if (data == "1") {
-                        $('#PrimaryModalalert1').modal('hide');
-                        $("#customerindex").load(location.href + " #customerindex>*", "");
-                        Lobibox.notify('success', {
-                            msg: 'Block CUSTOMER successed!'
-                        });
-                    } else {
-                        Lobibox.notify('error', {
-                            msg: 'Block CUSTOMER failed! Please try again.'
-                        });
-                    }
-                },
-                error: function () {
-                    Lobibox.notify('error', {
-                        msg: 'Block CUSTOMER failed! Please try again.'
-                    });
-                }
-            });
-        }
-    });
+    <!--var blockURL = '/Censor/Customer/BlockCustomer';-->
+    <!--$(document).on('click', '.btnblock', function () {-->
+        <!--var $buttonClicked = $(this);-->
+        <!--if (confirm("Block this Customer ?")) {-->
+            <!--var id = $buttonClicked.attr('data-id');-->
+            <!--$.ajax({-->
+                <!--type: "GET",-->
+                <!--url: blockURL,-->
+                <!--contentType: "application/html; charset=utf-8",-->
+                <!--data: { "customer_id": id },-->
+                <!--datatype: "html",-->
+                <!--success: function (data) {-->
+                    <!--if (data == "1") {-->
+                        <!--$('#PrimaryModalalert1').modal('hide');-->
+                        <!--$("#customerindex").load(location.href + " #customerindex>*", "");-->
+                        <!--Lobibox.notify('success', {-->
+                            <!--msg: 'Block CUSTOMER successed!'-->
+                        <!--});-->
+                    <!--} else {-->
+                        <!--Lobibox.notify('error', {-->
+                            <!--msg: 'Block CUSTOMER failed! Please try again.'-->
+                        <!--});-->
+                    <!--}-->
+                <!--},-->
+                <!--error: function () {-->
+                    <!--Lobibox.notify('error', {-->
+                        <!--msg: 'Block CUSTOMER failed! Please try again.'-->
+                    <!--});-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--});-->
 
-    var unBlockURL = '/Censor/Customer/UnBlockCustomer';
-    $(document).on('click', '.btnUnBlock', function () {
-        var $buttonClicked = $(this);
-        if (confirm("UnBlock this Customer ?")) {
-            var id = $buttonClicked.attr('data-id');
-            $.ajax({
-                type: "GET",
-                url: unBlockURL,
-                contentType: "application/html; charset=utf-8",
-                data: { "customer_id": id },
-                datatype: "html",
-                success: function (data) {
-                    if (data == "1") {
-                        $('#PrimaryModalalert1').modal('hide');
-                        $("#customerindex").load(location.href + " #customerindex>*", "");
-                        Lobibox.notify('success', {
-                            msg: 'UnBlock CUSTOMER successed!'
-                        });
-                    } else {
-                        Lobibox.notify('error', {
-                            msg: 'UnBlock CUSTOMER failed! Please try again.'
-                        });
-                    }
-                },
-                error: function () {
-                    Lobibox.notify('error', {
-                        msg: 'UnBlock CUSTOMER failed! Please try again.'
-                    });
-                }
-            });
-        }
-    });
-</script>
+    <!--var unBlockURL = '/Censor/Customer/UnBlockCustomer';-->
+    <!--$(document).on('click', '.btnUnBlock', function () {-->
+        <!--var $buttonClicked = $(this);-->
+        <!--if (confirm("UnBlock this Customer ?")) {-->
+            <!--var id = $buttonClicked.attr('data-id');-->
+            <!--$.ajax({-->
+                <!--type: "GET",-->
+                <!--url: unBlockURL,-->
+                <!--contentType: "application/html; charset=utf-8",-->
+                <!--data: { "customer_id": id },-->
+                <!--datatype: "html",-->
+                <!--success: function (data) {-->
+                    <!--if (data == "1") {-->
+                        <!--$('#PrimaryModalalert1').modal('hide');-->
+                        <!--$("#customerindex").load(location.href + " #customerindex>*", "");-->
+                        <!--Lobibox.notify('success', {-->
+                            <!--msg: 'UnBlock CUSTOMER successed!'-->
+                        <!--});-->
+                    <!--} else {-->
+                        <!--Lobibox.notify('error', {-->
+                            <!--msg: 'UnBlock CUSTOMER failed! Please try again.'-->
+                        <!--});-->
+                    <!--}-->
+                <!--},-->
+                <!--error: function () {-->
+                    <!--Lobibox.notify('error', {-->
+                        <!--msg: 'UnBlock CUSTOMER failed! Please try again.'-->
+                    <!--});-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
 </body>
 </html>

@@ -1,19 +1,18 @@
 package com.res.controllers;
 
 import com.res.models.Account;
+import com.res.models.AccountRole;
 import com.res.models.Customer;
 import com.res.services.AccountService;
 import com.res.services.CustomerService;
 import com.res.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
@@ -51,8 +50,7 @@ public class CustomerController {
         accountService.createOrUpdate(acc);
         customer.setAccount(acc);
         acc.setCustomer(customer);
-        customerService.createOrUpdate(customer);
-        redirect.addFlashAttribute("Done.", "Saved customer success!");
+        Customer cus =customerService.createOrUpdate(customer);
         return "customers/AddCustomer";
     }
     @RequestMapping(value = "/customer/edit/{id}", method= RequestMethod.GET)
@@ -70,5 +68,11 @@ public class CustomerController {
         cus.getAccount().setUserName(customer.getAccount().getUserName());
         customerService.createOrUpdate(cus);
         return "customers/EditCustomer";
+    }
+    @RequestMapping(value = "/customer/search", method= RequestMethod.GET)
+    public String search(String name, Model model) {
+        List<Customer> customer = customerService.findByName(name);
+        model.addAttribute("lstCus", customer);
+        return "customers/IndexCustomer";
     }
 }
