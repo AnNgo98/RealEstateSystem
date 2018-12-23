@@ -15,22 +15,18 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <div class="breadcome-heading">
-                                <form action="#">
                                     <div class="row">
-                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <select id="typeOfSearch" name="typeOfSearch" class="form-control" style="width: 100%">
-                                                <option value="1">Search by Name</option>
-                                                <option value="2">Search by Account</option>
-                                                <option value="3">Search by Email</option>
-                                            </select>
-                                        </div>
                                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                            <div role="search" class="sr-input-func" style="width: 100%">
-                                                <input type="text" name="value" placeholder="Search..." value="" class="search-int form-control" style="width: 100%"/>
-                                            </div>
+                                            <form class="form-inline pull-right"
+                                                  th:action="@{/employee/search}" method="GET" style="padding-right: 38%">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="name"
+                                                           placeholder="Search by name"/>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Search</button>
+                                            </form>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

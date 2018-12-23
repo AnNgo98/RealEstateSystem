@@ -57,25 +57,13 @@ public class EmployeeController {
         employeeService.createOrUpdate(emp);
         return "employees/EditEmp";
     }
-//    @RequestMapping(value = "/employees/create",method = RequestMethod.GET)
-//    public String addEmp(Model model)
-//    {
-//        return "employees/AddEmp";
-//    }
+    @RequestMapping(value = "/employee/search", method= RequestMethod.GET)
+    public String search(String name, Model model) {
+        List<Employee> employees = employeeService.findByName(name);
+        model.addAttribute("lstemp", employees);
+        return "employees/ViewEmp";
+    }
 
-    //    @RequestMapping(value = "/employee", method = RequestMethod.POST)
-//    public String create(@Valid Employee employee, BindingResult result, RedirectAttributes redirect) {
-//        employeeService.createOrUpdate(employee);
-//        redirect.addFlashAttribute("Done.", "Saved employee success!");
-//        return "employees/AddEmp";
-//    }
-//
-//    @RequestMapping(value = "/employees/create", method = RequestMethod.GET)
-//    public String createemp(Model model) {
-//        Employee employee=new Employee();
-//        model.addAttribute("employee",employee);
-//        return "employees/AddEmp";
-//    }
     @RequestMapping(value = "/employees/create", method = RequestMethod.GET)
     public String create(Model model) {
         Employee employee = new Employee();
@@ -95,22 +83,4 @@ public class EmployeeController {
         redirect.addFlashAttribute("Done.", "Saved customer success!");
         return "employees/AddEmp";
     }
-//    @RequestMapping(value = "login", method = RequestMethod.POST)
-//    public String loginAdmin(@Valid LoginForm loginForm, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            notifyService.addErrorMessage("Please fill the form correctly!");
-//            return "login";
-//        }
-//
-//        employees admin = this.employeeService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
-//
-//        if (admin.getEmployee_ID() == 0) {
-//            notifyService.addErrorMessage("Username or password is incorrect!");
-//            return "login";
-//        }
-//
-//        httpSession.setAttribute("Account", admin);
-//        notifyService.addInfoMessage("Login successful");
-//        return "redirect:/";
-//    }
 }

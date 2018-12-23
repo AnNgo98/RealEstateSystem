@@ -46,14 +46,20 @@ public class CustomerServiceImpl implements CustomerService {
         return this.customerRepo.findAll();
     }
 
-    @Override
-    public List<Customer> findByName(String name) {
-        return (List<Customer>) this.customerRepo.findAll().stream().filter(p -> p.getFullname().contains(name));
+//    @Override
+//    public List<Customer> findByName(String name) {
+//        return customerRepo.findByName(name);
+//   }
+//
+   @Override
+   public List<Customer> findByName(String name) {
+       return this.customerRepo.findAll().stream().filter(p -> p.getFullname().contains(name)).collect(Collectors.toList());
     }
+
 
     @Override
     public List<Customer> findByUsername(String username) {
-        return (List<Customer>) this.customerRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username));
+        return this.customerRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username)).collect(Collectors.toList());
     }
 
     @Override

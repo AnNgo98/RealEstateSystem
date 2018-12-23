@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Query;
 
 @Service
@@ -31,12 +32,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findByName(String name) {
-        return (List<Employee>) this.employeeRepo.findAll().stream().filter(p -> p.getFullname().contains(name));
+        return this.employeeRepo.findAll().stream().filter(p -> p.getFullname().contains(name)).collect(Collectors.toList());
     }
 
     @Override
     public List<Employee> findByUsername(String username) {
-        return (List<Employee>) this.employeeRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username));
+        return this.employeeRepo.findAll().stream().filter(p -> p.getAccount().getUserName().contains(username)).collect(Collectors.toList());
     }
 
     @Override
