@@ -72,10 +72,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--<div th:if="${lstCus.isEmpty()}">-->
-                                    <!--<tr>khong co du lieu</tr>-->
-                                <!--</div>-->
-                                <!--<div th:unless="${lstCus.isEmpty()}">-->
                                     <tr th:each ="p : ${lstCus}">
                                         <td th:text="${p.fullname}"></td>
                                         <td th:text="${p.email}"></td>
@@ -84,8 +80,6 @@
                                         <td th:text="${p.account.userName}"></td>
                                         <td><a th:href="@{'/customer/edit/'+${p.customer_ID}}">Edit</a></td>
                                     </tr>
-                                <!--</div>-->
-
                                 </tbody>
                             </table>
                         </div>

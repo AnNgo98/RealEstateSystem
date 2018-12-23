@@ -27,7 +27,7 @@ public class HomeController {
     @Autowired
     private EmployeeService employeeService;
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -74,8 +74,8 @@ public class HomeController {
 
             model.addAttribute("userInfo", userInfo);
 
-            String message = "Sorry " + principal.getName() //
-                    + "<br>  but the page you are looking for can't have permission for you. " +
+            String message = "Hi " + principal.getName()
+                    + ", but the page you are looking for can't have permission for you. " +
                     "Try checking the URL for the error, then hit the refresh button on your " +
                     "browser or try found something else in our app.";
             model.addAttribute("message", message);

@@ -2,7 +2,6 @@ package com.res.config;
 
 import javax.sql.DataSource;
 
-import com.res.services.EmployeeServiceImpl;
 import com.res.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
