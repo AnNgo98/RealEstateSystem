@@ -5,7 +5,6 @@
     <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}"/>
     <link href="/static/css/buttons.css" rel="stylesheet" th:href="@{/css/buttons.css}"/>
     <link href="/static/css/slideshow.css" rel="stylesheet" th:href="@{/css/slideshow.css}"/>
-    <link href="/static/css/form/all-type-forms.css" rel="stylesheet" th:href="@{/css/form/all-type-forms.css}"/>
     <!--<script-->
     <!--src="https://code.jquery.com/jquery-3.3.1.js"-->
     <!--integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="-->
@@ -21,7 +20,7 @@
                     <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="breadcome-heading">
-                                <form action="">
+                                <form th:action="@{/searchPosts}" method="GET">
                                     <div class="row">
                                         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-3" style="padding-bottom: 10px">
                                             <select id="typeOfPost" name="typeOfPost" class="form-control"
@@ -46,7 +45,7 @@
                                             </select>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-4">
-                                            <input name="date" id="finish" type="text" class="form-control" value=""
+                                            <input name="dateInput" id="dateInput" type="date" class="form-control" value=""
                                                    style="width:100%"/>
                                         </div>
                                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
@@ -110,7 +109,7 @@
                                     <td th:text="${p.title}"></td>
                                     <td th:text="${p.author.fullname}"></td>
                                     <td th:text="${p.postTime}"></td>
-                                    <td th:text="${p.postType.type_Tittle}"></td>
+                                    <td th:text="${p.postType.type_Tittle} + ${p.realEstaleType.realestate_Title}"></td>
                                     <td th:text="${p.price}"></td>
                                     <td>
                                         <button type="button"
@@ -237,19 +236,32 @@
 
 <footer th:replace="layout :: site-footer"/>
 <script type="text/javascript" th:inline="javascript">
-    var typeOfPost = '';
+    var typeOfPost = [[${typeOfPost}]];
     $(function () {
-        if (typeOfPost !== "") {
+        if (typeOfPost !== null) {
             $("#typeOfPost").val(typeOfPost);
         }
     });
 
-    var typeOfRE = '';
+    var typeOfRE = [[${typeOfRE}]];
     $(function () {
-        if (typeOfRE !== "") {
+        if (typeOfRE !== null) {
             $("#typeOfRE").val(typeOfRE);
         }
     });
+
+    var date = [[${date}]];
+    $(function () {
+        if (date !== null) {
+            $("#dateInput").val(date);
+            document.getElementById("dateInput").value = date;
+        } else {
+            var today = moment().format('YYYY-MM-DD');
+            document.getElementById("dateInput").value = today;
+        }
+    });
+
+
 
 
     var details = '/Censor/Post/Details';
@@ -265,7 +277,7 @@
                 datatype: "html",
                 success: function (data) {
                     $('#modal-content').html(data);
-                    $('.PrimaryModalalert').modal('show');
+                    $('#PrimaryModalalert').modal('show');
                 },
                 error: function () {
                     alert("Error: Get details of this Post failed. Please try again!");
@@ -287,7 +299,8 @@
                 datatype: "html",
                 success: function (data) {
                     if (data == 1) {
-                        $('#PrimaryModalalert1').modal('hide');
+                        $('.PrimaryModalalert').modal('hide');
+                        $('.modal-backdrop').hide();
                         $("#newPostTable").load(location.href + " #newPostTable>*", "");
                         Lobibox.notify('success', {
                             msg: 'Block POST successed!'

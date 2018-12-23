@@ -22,6 +22,7 @@ public class ReportedPost {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer reporter;
 
+    @Column(nullable = false)
     private boolean status;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)

@@ -1,7 +1,9 @@
 package com.res.services;
 
+import com.res.models.Employee;
 import com.res.models.Post;
 import com.res.models.ReportedPost;
+import com.res.repositories.EmployeeRepository;
 import com.res.repositories.PostRepository;
 import com.res.repositories.PostStatusRepository;
 import com.res.repositories.ReportedPostRepository;
@@ -24,6 +26,8 @@ public class PostServiceImpl implements PostService {
     private PostStatusRepository postStatusRepo;
     @Autowired
     ReportedPostRepository reportedPostRepo;
+    @Autowired
+    EmployeeRepository employeeRepo;
 
     @Override
     public int postsToday() {
@@ -85,5 +89,44 @@ public class PostServiceImpl implements PostService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public boolean approveReport(int report_id) {
+        try {
+            ReportedPost reportedPost = this.reportedPostRepo.findOne(report_id);
+
+            if (!block(reportedPost.getPost().getPost_ID()))
+                return false;
+
+            Employee censor = this.employeeRepo.findOne(1);
+            reportedPost.setCensor(censor);
+            reportedPost.setStatus(true);
+            this.reportedPostRepo.save(reportedPost);
+
+            return true;
+
+        } catch (Exception e) {
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean deleteReport(int report_id) {
+        try {
+            ReportedPost reportedPost = this.reportedPostRepo.findOne(report_id);
+
+            Employee censor = this.employeeRepo.findOne(1);
+            reportedPost.setCensor(censor);
+            reportedPost.setStatus(true);
+            this.reportedPostRepo.save(reportedPost);
+
+            return true;
+
+        } catch (Exception e) {
+        }
+
+        return false;
     }
 }

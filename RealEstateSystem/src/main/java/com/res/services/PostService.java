@@ -22,4 +22,8 @@ public interface PostService {
     public boolean approve(int post_id);
 
     public boolean block(int post_id);
+
+    public boolean approveReport(int report_id);
+
+    public boolean deleteReport(int report_id);
 }

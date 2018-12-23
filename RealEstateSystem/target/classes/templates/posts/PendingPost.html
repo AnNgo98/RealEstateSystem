@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: site-head">
-    <meta charset="utf-8" />
-    <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}" />
+    <meta charset="utf-8"/>
+    <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}"/>
     <link href="/static/css/buttons.css" rel="stylesheet" th:href="@{/css/buttons.css}"/>
 </head>
 <body>
-<header th:replace="layout :: site-header" />
+<header th:replace="layout :: site-header"/>
 <div class="breadcome-area all-content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -64,7 +64,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each ="p : ${lstPending}">
+                                <tr th:each="p : ${lstPending}">
                                     <td th:text="${p.post_ID}"></td>
                                     <td th:text="${p.title}"></td>
                                     <td th:text="${p.author.fullname}"></td>
@@ -72,37 +72,116 @@
                                     <td th:text="${p.postType.type_Tittle}"></td>
                                     <td th:text="${p.price}"></td>
                                     <td>
-                                        <button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnedit" th:data-id="${p.post_ID}" data-toggle="modal" data-target="#PrimaryModalalert">Details</button>
+                                        <button type="button"
+                                                class="btn btn-custon-rounded-three btn-primary btn-xs btnedit"
+                                                data-toggle="modal"
+                                                th:attr="data-target='#postModel'+${p.post_ID}">Details
+                                        </button>
                                     </td>
                                 </tr>
-                                <!--@{-->
-                                <!--for (int i = 0; i < Model.Count; i++)-->
-                                <!--{-->
-                                <!--<tr>-->
-                                <!--<td>@(i + 1)</td>-->
-                                <!--<td>@Model[i].Post_ID</td>-->
-                                <!--<td>@Model[i].Tittle</td>-->
-                                <!--@if (Model[i].customers != null)-->
-                                <!--{-->
-                                <!--<td>@Model[i].customers.LastName @Model[i].customers.Firstname</td>-->
-                                <!--}-->
-                                <!--else-->
-                                <!--{-->
-                                <!--<td>@Model[i].employees.FullName</td>-->
-                                <!--}-->
-                                <!--<td>@Model[i].PostTime</td>-->
-                                <!--<td>@Model[i].Type1.Name @Model[i].RealEstateType.Name</td>-->
-                                <!--<td>@String.Format("{0:0,0 VND}", Model[i].Price)</td>-->
-                                <!--<td>-->
-                                <!--<div class="modal-area-button">-->
-                                <!--<button type="button" class="btn btn-custon-rounded-three btn-primary btn-xs btnSubmit" data-id="@Model[i].Post_ID" data-toggle="modal" data-target="#PrimaryModalalert">Details</button>-->
-                                <!--</div>-->
-                                <!--</td>-->
-                                <!--</tr>-->
-                                <!--}-->
-                                <!--}-->
                                 </tbody>
                             </table>
+                            <span th:each="p : ${lstPending}">
+                                    <div th:attr="id='postModel'+${p.post_ID}"
+                                         class="PrimaryModalalert modal modal-edu-general default-popup-PrimaryModal fade"
+                                         role="dialog">
+                                        <div class="modal-dialog">
+                                            <div id="modal-content" class="modal-content">
+                                                <div class="modal-close-area modal-close-df">
+                                                    <a class="close" data-dismiss="modal" href="#"><i
+                                                            class="fa fa-close"></i></a>
+                                                </div>
+                                                <!--<p th:text="${p.post_ID}">post_id</p>-->
+                                                <!--<div class="slideshow-container">-->
+
+                                                <!--<div class="mySlides1">-->
+                                                <!--<img src="../static/img_posts/1.1.jpg"-->
+                                                <!--th:src="@{/img_posts/1.1.jpg}" alt=""/>-->
+                                                <!--&lt;!&ndash;<span th:each="img : ${p.postImages}">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<img src="../static/img_posts/1.1.jpg"&ndash;&gt;-->
+                                                <!--&lt;!&ndash;th:src="@{/img_posts/1.1.jpg}" alt=""/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                                <!--</div>-->
+                                                <!--<div class="mySlides1">-->
+                                                <!--<img src="../static/img_posts/1.1.jpg"-->
+                                                <!--th:src="@{/img_posts/1.2.jpg}" alt=""/>-->
+                                                <!--</div>-->
+
+                                                <!--<a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>-->
+                                                <!--<a class="next" onclick="plusSlides(1, 0)">&#10095;</a>-->
+                                                <!--</div>-->
+                                                <div class="sparkline8-list">
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Post ID:</td>
+                                                            <td th:text="${p.post_ID}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tittle:</td>
+                                                            <td th:text="${p.title}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Poster:</td>
+                                                            <td th:text="${p.author.fullname}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Post Time:</td>
+                                                            <td th:text="${p.postTime}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Price:</td>
+                                                            <td th:text="${p.price}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Description:</td>
+                                                            <td th:text="${p.description}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Location:</td>
+                                                            <td th:text="${p.location}">post_id</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <br/><br/>
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <span th:if="${p.details != null}">
+                                                            <tr>
+                                                            <td>Bedroom: </td>
+                                                            <td th:text="${p.details.bedroom}"></td>
+                                                            <td>Bathroom: </td>
+                                                            <td th:text="${p.details.bathroom}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Floor: </td>
+                                                            <td th:text="${p.details.floor}"></td>
+                                                            <td>Alley: </td>
+                                                            <td th:text="${p.details.alley}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Direction: </td>
+                                                            <td th:text="${p.details.direction.direction_Title}"></td>
+                                                            </tr>
+                                                        </span>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                       <button type="button" class="btn btn-custon-rounded-four btn-primary btnApprove" th:attr="data-id=${p.post_ID}" data-toggle="modal">Approve</button>
+                                                    <button type="button" id="btnBlock" th:attr="data-id=${p.post_ID}"
+                                                            class="btn btn-custon-rounded-four btn-danger btnblock"
+                                                            data-toggle="modal">Block
+                                                    </button>
+                                                    <button type="button" data-dismiss="modal"
+                                                            class="btn btn-custon-rounded-four btn-default">Cancel
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -110,35 +189,74 @@
         </div>
     </div>
 </div>
-<!-- Static Table End -->
-<!-- Details Post -->
-<div id="PrimaryModalalert" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
-    <div class="modal-dialog">
-        <div id="modal-content" class="modal-content"></div>
-    </div>
-</div>
-<footer th:replace="layout :: site-footer" />
-<script>
-    var TeamDetailPostBackURL = '/Censor/Post/Details';
-    $(function () {
-        $(".btnSubmit").click(function () {
-            var $buttonClicked = $(this);
+<footer th:replace="layout :: site-footer"/>
+<script type="text/javascript" th:inline="javascript">
+    var approveURL = '/posts/approve';
+    $(document).on('click', '.btnApprove', function () {
+        var $buttonClicked = $(this);
+        if (confirm("Approve this post ?")) {
             var id = $buttonClicked.attr('data-id');
             $.ajax({
                 type: "GET",
-                url: TeamDetailPostBackURL,
+                url: approveURL,
                 contentType: "application/html; charset=utf-8",
-                data: { "post_ID": id, "type": "pending" },
+                data: {"post_id": id},
                 datatype: "html",
                 success: function (data) {
-                    $('#modal-content').html(data);
-                    $('#PrimaryModalalert').modal('show');
+                    if (data == 1) {
+                        $('.PrimaryModalalert').modal('hide');
+                        $('.modal-backdrop').hide();
+                        $("#newPostTable").load(location.href + " #newPostTable>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'Approve POST successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'Approve POST failed! Please try again.'
+                        });
+                    }
                 },
                 error: function () {
-                    alert("Error: Get details of this Post failed. Please try again!");
+                    Lobibox.notify('error', {
+                        msg: 'Approve POST failed! Please try again.'
+                    });
                 }
             });
-        });
+        }
+    });
+
+    var blockURL = '/posts/block';
+    $(document).on('click', '.btnblock', function () {
+        var $buttonClicked = $(this);
+        if (confirm("Block this post ?")) {
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: blockURL,
+                contentType: "application/html; charset=utf-8",
+                data: {"post_id": id},
+                datatype: "html",
+                success: function (data) {
+                    if (data == 1) {
+                        $('.PrimaryModalalert').modal('hide');
+                        $('.modal-backdrop').hide();
+                        $("#newPostTable").load(location.href + " #newPostTable>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'Block POST successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'Block POST failed! Please try again.'
+                        });
+                    }
+                },
+                error: function () {
+                    Lobibox.notify('error', {
+                        msg: 'Block POST failed! Please try again.'
+                    });
+                }
+            });
+        }
     });
 
 </script>
