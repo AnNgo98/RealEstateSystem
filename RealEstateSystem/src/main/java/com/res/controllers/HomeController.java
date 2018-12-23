@@ -1,6 +1,8 @@
 package com.res.controllers;
 
-import com.res.forms.LoginForm;
+import com.res.forms.ChartDataByYear;
+import com.res.services.CustomerService;
+import com.res.services.EmployeeService;
 import com.res.services.PostService;
 import com.res.utils.WebUtils;
 import org.springframework.security.core.userdetails.User;
@@ -11,19 +13,49 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    CustomerService customerService;
 
     @RequestMapping("/")
     public String index(Model model) {
-        int postsToday = postService.postsToday();
-        model.addAttribute("postsToday", postsToday);
+
+        List<ChartDataByYear> lstChartData = new ArrayList<>();
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        for (int i = 6; i >= 0; i--) {
+            int year = cal.get(Calendar.YEAR) - i;
+            int totalPosts = this.postService.totalPostsByYear(year);
+            int totalUsers = this.customerService.totalCustomersByYear(year);
+
+            ChartDataByYear data = new ChartDataByYear();
+            data.setPeriod(String.valueOf(year));
+            data.setValue1(totalPosts);
+            data.setValue2(totalUsers);
+
+            lstChartData.add(data);
+        }
+
+        model.addAttribute("lstChartData", lstChartData);
+        model.addAttribute("totalPosts", postService.totalPosts());
+        model.addAttribute("totalBlockedPosts", postService.totalBlockedPosts());
+        model.addAttribute("totalEmployees", this.employeeService.totalEmployees());
+        model.addAttribute("totalCustomers", customerService.totalCustomers());
+
         return "index";
     }
 

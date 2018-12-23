@@ -109,7 +109,7 @@
                                     <td th:text="${p.title}"></td>
                                     <td th:text="${p.author.fullname}"></td>
                                     <td th:text="${p.postTime}"></td>
-                                    <td th:text="${p.postType.type_Tittle} + ${p.realEstaleType.realestate_Title}"></td>
+                                    <td th:text="${p.postType.type_Tittle} + ' ' + ${p.realEstaleType.realestate_Title}"></td>
                                     <td th:text="${p.price}"></td>
                                     <td>
                                         <button type="button"

@@ -8,13 +8,19 @@ import java.util.List;
 
 public interface EmployeeService {
 
+    int totalEmployees();
+
     List<Employee> findAll();
+
     List<Employee> findByName(String name);
+
     List<Employee> findByUsername(String username);
+
     List<Employee> findByEmail(String email);
+
     boolean createOrUpdate(Employee employee);
 
-//    UserDetails loadUserByUsername(String username);
     List<String> getRoleNames(int account_ID);
+
     Employee getCusByID(int id);
 }
