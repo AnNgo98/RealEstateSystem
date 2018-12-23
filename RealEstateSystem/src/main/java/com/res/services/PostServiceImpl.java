@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -30,10 +31,34 @@ public class PostServiceImpl implements PostService {
     EmployeeRepository employeeRepo;
 
     @Override
-    public int postsToday() {
-        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        int total = Math.toIntExact(this.postRepo.findAll().stream().filter(p -> Objects.equals(formatDate.format(p.getPostTime()), formatDate.format(new Date()))).count());
-        return 0;
+    public int totalPosts() {
+        int total = this.postRepo.findAll().size();
+
+        return total;
+    }
+
+    @Override
+    public int totalBlockedPosts() {
+
+        return this.postRepo.findAll().stream().filter(p -> Objects.equals(p.getStatus().getStatus_ID(), 3)).collect(Collectors.toList()).size();
+    }
+
+    @Override
+    public int totalPostsByYear(int year) {
+        Calendar cal = Calendar.getInstance();
+        List<Post> posts = this.postRepo.findAll();
+
+        int i = 0;
+        for (Post p : posts) {
+
+            cal.setTime(p.getPostTime());
+
+            if (cal.get(Calendar.YEAR) == year) {
+                i++;
+            }
+        }
+
+        return i;
     }
 
     @Override

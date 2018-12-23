@@ -7,7 +7,11 @@ import com.res.models.ReportedPost;
 import java.util.List;
 
 public interface PostService {
-    int postsToday();
+    int totalPosts();
+
+    int totalBlockedPosts();
+
+    int totalPostsByYear(int year);
 
     List<Post> findAll();
 

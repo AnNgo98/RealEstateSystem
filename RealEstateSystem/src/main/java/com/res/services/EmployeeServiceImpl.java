@@ -20,6 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EntityManager entityManager;
 
     @Override
+    public int totalEmployees() {
+        return this.employeeRepo.findAll().size();
+    }
+
+    @Override
     public List<Employee> findAll() {
         return this.employeeRepo.findAll();
     }
