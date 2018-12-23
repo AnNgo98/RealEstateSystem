@@ -1,5 +1,6 @@
 package com.res.controllers;
 
+import com.res.forms.LoginForm;
 import com.res.services.PostService;
 import com.res.utils.WebUtils;
 import org.springframework.security.core.userdetails.User;
@@ -26,10 +27,9 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model model) {
-        model.addAttribute("title", "Logout");
-        return "logoutSuccessfulPage";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginAdmin() {
+        return "login";
     }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)

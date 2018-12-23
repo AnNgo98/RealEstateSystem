@@ -34,10 +34,7 @@ public class EmployeeController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginAdmin(LoginForm loginForm) {
-        return "login";
-    }
+
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public String viewEmp(Model model) {

@@ -87,8 +87,8 @@ public class Post {
         this.title = title;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrice() {
+        return String.format("%,.0f", price);
     }
 
     public void setPrice(double price) {
@@ -176,4 +176,20 @@ public class Post {
     }
 
     public Post() { }
+
+    public Post(PostType postType, Date postTime, String title, double price, String location, double area, String project, String description, RealEstaleType realEstaleType, PostDetails details, Customer author, Set<PostImages> postImages, PostStatus status) {
+        this.postType = postType;
+        this.postTime = postTime;
+        this.title = title;
+        this.price = price;
+        this.location = location;
+        this.area = area;
+        this.project = project;
+        this.description = description;
+        this.realEstaleType = realEstaleType;
+        this.details = details;
+        this.author = author;
+        this.postImages = postImages;
+        this.status = status;
+    }
 }
