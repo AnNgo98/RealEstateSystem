@@ -3,6 +3,7 @@ package com.res.controllers;
 import com.res.models.Account;
 import com.res.models.AccountRole;
 import com.res.models.Customer;
+import com.res.models.Role;
 import com.res.services.AccountService;
 import com.res.services.CustomerService;
 import com.res.services.NotificationService;
@@ -54,6 +55,9 @@ public class CustomerController {
         accountService.createOrUpdate(acc);
         customer.setAccount(acc);
         acc.setCustomer(customer);
+//        AccountRole accrole = new AccountRole();
+//        accrole.setRole(accrole.getRole());
+//        acc.setAccountRoles(accrole);
         Customer cus =customerService.createOrUpdate(customer);
         return "customers/AddCustomer";
     }
