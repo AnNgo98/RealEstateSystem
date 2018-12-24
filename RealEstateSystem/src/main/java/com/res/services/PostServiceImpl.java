@@ -26,9 +26,9 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostStatusRepository postStatusRepo;
     @Autowired
-    ReportedPostRepository reportedPostRepo;
+    private ReportedPostRepository reportedPostRepo;
     @Autowired
-    EmployeeRepository employeeRepo;
+    private EmployeeRepository employeeRepo;
 
     @Override
     public int totalPosts() {
